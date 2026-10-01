@@ -4,7 +4,7 @@
 
 An applied AI/ML research and prototype project based on the September 2026 proposal prepared by **Hamza Rasheed** for the **NETSOL Technologies Pakistan AI & Machine Learning Trainee Program**.
 
-**Current phase:** Dataset preparation and clip verification.  
+**Current phase:** Available clip preparation complete; feature extraction is next.  
 **Proposed duration:** 13 weeks.  
 **Scope:** Research into observable behavioral patterns; not medical diagnosis.
 
@@ -57,7 +57,7 @@ These roles follow the supplied proposal. Supplementary datasets have not yet be
 
 The annotation dataset contains **928 clips**, **569 unique original video IDs**, and **11 columns**: `Video_ID` plus ten binary behavioral labels. It is a multi-label task; a clip may have multiple positive labels.
 
-| Split | Complete Annotation Set | Currently Metadata-Valid Clips |
+| Split | Complete Annotation Set | Prepared and Verified Clips |
 |---|---:|---:|
 | Train | 553 | 312 |
 | Validation | 193 | 108 |
@@ -103,11 +103,29 @@ The following status reflects the latest reported local checks on **30 September
 
 The clips `mkin5up15XM_46_56` and `mkin5up15XM_57_63` were excluded because their requested intervals exceed the available source duration. The check report was saved as `video_check_report.csv`.
 
-### In Progress
+### Clip Extraction Complete
 
-FFmpeg clip extraction and verification are ongoing. The initial five trial clips passed audio-stream, video-stream, and duration checks. The final extraction count is pending.
+The supplied notebook records **527 PASS and 0 FAIL**. Its checks verify audio/video streams and duration within 0.3 seconds of the requested interval. Local videos have not been independently played or decoded in this review environment.
 
-Metadata-valid counts are not final successfully extracted clip counts. Feature extraction, model training, fusion, explainability, and dashboard development have not yet been completed.
+Ready subsets were generated: train **312**, validation **108**, test **107**. Independent review of the uploaded CSVs confirmed binary labels, no missing values or duplicate IDs, zero clip/source overlap, exact row-and-label equality between the combined splits and `dataset_ready.csv`, and matching coverage of all 527 metadata-valid report IDs.
+
+Feature extraction, training, fusion, explainability, and dashboard development remain planned.
+
+## Files and Usage
+
+- `notebooks/dataset_review.ipynb`: read-only validation and label analysis of the supplied CSVs; no media needed.
+- `notebooks/data_preparation.ipynb`: adapted cleaning, availability, metadata, extraction, and subset-generation workflow for local use.
+- `dataset/csvs/`: four ready annotation files and a sanitized source metadata report.
+- `docs/verification_summary.json`: independent annotation checks and reported local extraction results.
+- `docs/PREPARATION_NOTES.md`: prerequisites, privacy changes, and reproducibility limitations.
+- `requirements.txt`: Python packages used by the packaged notebooks.
+- `.gitignore`: media, environments, private settings, and temporary-file exclusions.
+
+Install the notebook dependencies with `python -m pip install -r requirements.txt`. For a pip-free environment managed by uv, use `uv pip install --python <path-to-python> -r requirements.txt`.
+
+Open `dataset_review.ipynb` from the repository root or its `notebooks` folder. Select your Python environment and run the cells in order.
+
+The preparation notebook additionally requires FFmpeg/FFprobe, original annotation CSVs, and source videos. Set `AV_ASD_VIDEO_DIR` to the local source folder before starting the notebook kernel. Sanitized report paths are relative documentation paths; rerun the metadata section to regenerate usable local paths before extraction. See the preparation notes before running it.
 
 ## Proposed Methodology
 
@@ -164,7 +182,7 @@ Current source-video separation does not prove participant-level separation. Par
 | Prototype | Streamlit or FastAPI with a lightweight UI | Proposed |
 | Collaboration | Git / GitHub | Repository created |
 
-Setup and execution commands will be documented alongside the uploaded scripts and their verified dependencies.
+Python dependencies for the packaged notebooks are listed in `requirements.txt`; FFmpeg and FFprobe must be installed separately. Research-model dependencies will be documented when selected.
 
 ## Expected Deliverables
 
@@ -207,8 +225,7 @@ The supplied proposal is marked confidential. Its full document and reference li
 
 ## Immediate Next Steps
 
-1. Finish extraction and review the final verification report.
-2. Create annotation subsets for successfully verified clips while retaining original split assignments.
-3. Review class balance and available audio/visual inputs in those subsets.
-4. Add preparation scripts, sanitized notebooks, reports, and dependency instructions to the repository.
-5. Begin reproducible feature extraction and baseline experiments.
+1. Review class balance in the verified subset.
+2. Prepare reproducible audio and visual feature extraction.
+3. Establish modality-specific baselines.
+4. Compare fusion strategies and perform explainability/ablation experiments.

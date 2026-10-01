@@ -1,0 +1,37 @@
+# Local environments and caches.
+.venv/
+venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# Media and temporary downloads.
+*.mp4
+*.mkv
+*.webm
+*.avi
+*.mov
+*.wav
+*.mp3
+*.m4a
+*.part
+*.ytdl
+dataset/clips/
+dataset/original_videos/
+original_videos/
+
+# Private configuration, credentials, and cookies.
+.env
+.env.*
+cookies*.txt
+*cookies*.json
+*.pem
+*.key
+*.bak
+*.log
+
+# Generated feature/model artifacts.
+*.npy
+*.npz
+*.pt
+*.pth
+*.h5
