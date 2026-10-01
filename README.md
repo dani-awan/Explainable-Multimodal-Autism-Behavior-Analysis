@@ -1,231 +1,768 @@
 # An Explainable Multimodal AI Framework for Autism-Related Behavioral Analysis
 
-### Using Audio-Visual and Behavioral Features
+> **An AI/ML research and prototype project for analyzing autism-related behavioral patterns using audio, visual/behavioral, and structured behavioral features.**
 
-An applied AI/ML research and prototype project based on the September 2026 proposal prepared by **Hamza Rasheed** for the **NETSOL Technologies Pakistan AI & Machine Learning Trainee Program**.
+---
 
-**Current phase:** Available clip preparation complete; feature extraction is next.  
-**Proposed duration:** 13 weeks.  
-**Scope:** Research into observable behavioral patterns; not medical diagnosis.
+## 📌 Project Overview
 
-## What Is This Project?
+This project proposes an **Explainable Multimodal Artificial Intelligence (AI) Framework** for autism-related behavioral analysis.
 
-This project investigates whether combining audio, visual, and structured behavioral information provides more useful analysis of autism-related behavioral patterns than using a single modality.
+The framework investigates whether combining multiple observable behavioral modalities — including **audio, visual/behavioral, and structured behavioral features** — can provide more useful and informative analysis than relying on a single modality.
 
-The proposed framework will process each available modality independently, establish baseline models, compare multimodal fusion strategies, and explain which features or modalities influence predictions. A lightweight interface will demonstrate the results and their limitations.
+The project will systematically compare:
 
-The project does not assume that multimodal models will always perform better. Their value will be tested through controlled experiments, modality ablation, and a consistent evaluation protocol.
+* Unimodal vs. multimodal learning
+* Early vs. late multimodal fusion
+* Static vs. temporal behavioral modeling where supported by the data
+* Explainable AI techniques for understanding model outputs
+* Model performance under modality ablation and robustness experiments
 
-## Problem and Research Motivation
+The project is designed as an **AI/ML research and prototype system**, not as an autonomous medical diagnostic system.
 
-Observable behaviors vary between individuals and recording conditions. A single input may miss information present in another modality. Small datasets, class imbalance, unavailable media, data leakage, and limited interpretability can also make results difficult to reproduce or generalize.
+---
 
-The proposal addresses these challenges through careful dataset auditing, unimodal comparisons, early and late fusion experiments, explainability, and explicit reporting of limitations.
+## 🎯 Problem Statement
 
-## Aim and Objectives
+Autism-related behavioral patterns can vary considerably between individuals and may involve differences in social communication, interaction, attention, sensory responses, and repetitive or restricted behaviors.
 
-**Aim:** Design and evaluate an explainable multimodal AI framework integrating audio-visual and structured behavioral features for autism-related behavioral analysis.
+Artificial intelligence can potentially analyze observable behavioral signals from sources such as video, audio, and structured behavioral observations. However, existing research faces several challenges:
 
-1. Develop reproducible preprocessing pipelines.
-2. Establish baselines for each available modality.
-3. Compare early-fusion and late-fusion strategies.
-4. Investigate temporal modeling where ordered sequences support it.
-5. Identify influential features and modality contributions.
-6. Conduct modality-ablation and robustness experiments.
-7. Build a lightweight behavioral-analysis demonstration interface.
-8. Document privacy, fairness, dataset limitations, and external-validation needs.
+* Many studies focus on only one modality.
+* Available datasets can be small or heterogeneous.
+* Dataset imbalance and demographic bias can affect model performance.
+* Multimodal models are not always compared against strong unimodal baselines.
+* Model predictions may be difficult to interpret.
+* Reproducibility and external validation remain important challenges.
+* Privacy is particularly important when working with child audio/video data.
 
-## Research Questions
+Therefore, this project investigates a reproducible and explainable multimodal framework that evaluates complementary behavioral signals while keeping claims proportional to the available evidence.
 
-- How effectively can individual modalities characterize the annotated behaviors?
-- Does multimodal fusion improve useful evaluation metrics under the same protocol?
-- How do early and late fusion compare?
-- Which features and modalities influence predictions most strongly?
-- How stable are results under grouped validation and modality ablation?
+---
 
-## Dataset Strategy
+## 🎯 Aim
 
-| Dataset | Proposed Role | Status in This Project |
-|---|---|---|
-| AV-ASD | Primary audio-visual behavioral benchmark | Annotation checks and local media preparation underway |
-| ASD-FEAT | Complementary derived-behavioral-feature experiments | Candidate; access, files, and licensing still to be verified |
-| DREAM | Optional temporal experiments using processed behavioral features | Supplementary candidate; access and suitability still to be verified |
+> **To design and evaluate an explainable multimodal AI framework that integrates audio-visual and structured behavioral features for autism-related behavioral analysis.**
 
-These roles follow the supplied proposal. Supplementary datasets have not yet been integrated. Separate datasets will not be treated as aligned modalities for the same samples unless a valid correspondence exists. Published clinical studies with inaccessible raw data are literature references, not implementation dependencies.
+---
 
-### Current AV-ASD Annotation Overview
+## 🚀 Objectives
 
-The annotation dataset contains **928 clips**, **569 unique original video IDs**, and **11 columns**: `Video_ID` plus ten binary behavioral labels. It is a multi-label task; a clip may have multiple positive labels.
+The project will pursue the following objectives:
 
-| Split | Complete Annotation Set | Prepared and Verified Clips |
-|---|---:|---:|
-| Train | 553 | 312 |
-| Validation | 193 | 108 |
-| Test | 182 | 107 |
-| Total | 928 | 527 |
+1. Develop reproducible preprocessing pipelines for available behavioral modalities.
+2. Establish unimodal baseline models for audio, visual/behavioral, and structured behavioral data.
+3. Compare early-fusion and late-fusion multimodal learning strategies.
+4. Investigate temporal modeling when sequential behavioral data are available.
+5. Apply Explainable AI (XAI) techniques to identify influential behavioral features and modality contributions.
+6. Conduct modality ablation experiments to determine the contribution of individual modalities.
+7. Evaluate robustness using appropriate cross-validation and participant-level data splitting.
+8. Develop a lightweight demonstration dashboard for communicating model outputs and explanations.
+9. Document dataset limitations, privacy considerations, fairness concerns, reproducibility requirements, and future external-validation needs.
 
-### Behavioral Labels
+---
 
-1. Absence or Avoidance of Eye Contact
-2. Aggressive Behavior
-3. Hyper- or Hyporeactivity to Sensory Input
-4. Non-Responsiveness to Verbal Interaction
-5. Non-Typical Language
-6. Object Lining-Up
-7. Self-Hitting or Self-Injurious Behavior
-8. Self-Spinning or Spinning Objects
-9. Upper Limb Stereotypies
-10. Background
+# 🔬 Research Questions
 
-These annotations describe behaviors; they are not individual diagnostic labels.
+### RQ1
 
-## Current Progress
+How effectively can individual audio, visual, and structured behavioral modalities characterize autism-related behavioral patterns?
 
-The following status reflects the latest reported local checks on **30 September 2026**. It is separate from the proposed research plan.
+### RQ2
 
-### Completed Checks
+Does multimodal fusion provide more useful behavioral analysis than individual modalities under the same evaluation protocol?
 
-- Basic CSV cleaning and consistency checks completed.
-- No missing values or exact duplicate rows reported; cleaning retained all 928 rows.
-- Zero clip-ID and original-video-ID overlap across train, validation, and test.
-- Combined split IDs match the complete annotation set, with no missing or extra IDs.
-- Cleaned CSVs saved as `dataset_clean.csv`, `train_clean.csv`, `val_clean.csv`, and `test_clean.csv`.
-- 296 available original video files reported, covering 529 annotated clips.
-- Three incomplete `.part` files reported and excluded from completed media.
-- Source metadata and timestamp checks completed using FFprobe.
+### RQ3
 
-| Source Check Result | Clips |
-|---|---:|
-| Metadata valid | 527 |
-| Source video missing | 399 |
-| Requested interval exceeds source duration | 2 |
-| Total | 928 |
+How do early-fusion and late-fusion strategies compare for multimodal behavioral analysis?
 
-The clips `mkin5up15XM_46_56` and `mkin5up15XM_57_63` were excluded because their requested intervals exceed the available source duration. The check report was saved as `video_check_report.csv`.
-
-### Clip Extraction Complete
-
-The supplied notebook records **527 PASS and 0 FAIL**. Its checks verify audio/video streams and duration within 0.3 seconds of the requested interval. Local videos have not been independently played or decoded in this review environment.
-
-Ready subsets were generated: train **312**, validation **108**, test **107**. Independent review of the uploaded CSVs confirmed binary labels, no missing values or duplicate IDs, zero clip/source overlap, exact row-and-label equality between the combined splits and `dataset_ready.csv`, and matching coverage of all 527 metadata-valid report IDs.
+### RQ4
 
-Feature extraction, training, fusion, explainability, and dashboard development remain planned.
+Which behavioral features and modalities contribute most strongly to model predictions?
 
-## Files and Usage
+### RQ5
 
-- `notebooks/dataset_review.ipynb`: read-only validation and label analysis of the supplied CSVs; no media needed.
-- `notebooks/data_preparation.ipynb`: adapted cleaning, availability, metadata, extraction, and subset-generation workflow for local use.
-- `dataset/csvs/`: four ready annotation files and a sanitized source metadata report.
-- `docs/verification_summary.json`: independent annotation checks and reported local extraction results.
-- `docs/PREPARATION_NOTES.md`: prerequisites, privacy changes, and reproducibility limitations.
-- `requirements.txt`: Python packages used by the packaged notebooks.
-- `.gitignore`: media, environments, private settings, and temporary-file exclusions.
+How stable are model results under cross-validation and modality ablation?
 
-Install the notebook dependencies with `python -m pip install -r requirements.txt`. For a pip-free environment managed by uv, use `uv pip install --python <path-to-python> -r requirements.txt`.
+---
 
-Open `dataset_review.ipynb` from the repository root or its `notebooks` folder. Select your Python environment and run the cells in order.
+# 💡 Research Hypotheses
 
-The preparation notebook additionally requires FFmpeg/FFprobe, original annotation CSVs, and source videos. Set `AV_ASD_VIDEO_DIR` to the local source folder before starting the notebook kernel. Sanitized report paths are relative documentation paths; rerun the metadata section to regenerate usable local paths before extraction. See the preparation notes before running it.
+### H1
 
-## Proposed Methodology
+Multimodal representations can capture complementary information that may not be fully represented by a single behavioral modality.
 
-1. **Dataset audit:** Record provenance, permissions, labels, missingness, available modalities, and participant grouping where provided.
-2. **Preprocessing:** Segment and resample audio; sample video frames or derive visual features; clean and normalize structured inputs.
-3. **Exploratory analysis:** Examine class distribution, modality availability, sequence lengths, and demographics where available.
-4. **Unimodal baselines:** Evaluate individual modalities using suitable interpretable or lightweight models.
-5. **Early fusion:** Concatenate compatible features before classification.
-6. **Late fusion:** Combine modality-specific outputs, with the exact combination method documented per experiment.
-7. **Temporal modeling:** Test LSTM, TCN, or lightweight attention only where sequence data and resources justify it.
-8. **Explainability:** Use SHAP or comparable attribution methods and modality-contribution analysis.
-9. **Ablation and robustness:** Remove modalities, inspect errors, and report fold variation or uncertainty where feasible.
-10. **Prototype:** Display behavioral predictions, input modalities, scores, explanations, and limitations in a lightweight interface.
+### H2
 
-All model families and feature choices remain proposed until implemented and evaluated. Behavioral label columns are prediction targets, not input features.
+A multimodal fusion model may improve at least one primary evaluation metric compared with relevant unimodal baselines when evaluated using the same protocol.
 
-## Planned Experiments
+### H3
 
-| Experiment | Input / Focus | Main Comparison |
-|---|---|---|
-| E1 | Structured behavioral features, if available | Interpretable baseline |
-| E2 | Audio features or embeddings | Audio-only performance |
-| E3 | Visual / temporal features | Visual-only performance |
-| E4 | Audio and visual early fusion | Multimodal versus unimodal |
-| E5 | Audio and visual late fusion | Fusion-strategy comparison |
-| E6 | Compatible audio, visual, and behavioral inputs, if available | Combined model versus modality ablations |
-| E7 | Best validated model | Feature and modality attribution |
+Explainable AI techniques can identify modality-specific behavioral signals that materially influence model predictions.
 
-## Evaluation and Reproducibility
+### H4
+
+Removing an informative modality will produce a measurable change in model performance.
+
+---
+
+# 🧩 Multimodal Framework
+
+The proposed framework follows the general pipeline:
+
+```text
+                    ┌─────────────────────┐
+                    │   Research Dataset  │
+                    └──────────┬──────────┘
+                               │
+              ┌────────────────┼────────────────┐
+              │                │                │
+              ▼                ▼                ▼
+        ┌──────────┐     ┌──────────┐    ┌──────────────┐
+        │  Audio   │     │  Visual  │    │ Behavioral   │
+        │ Features │     │ Features │    │   Features   │
+        └────┬─────┘     └────┬─────┘    └──────┬───────┘
+             │                │                  │
+             ▼                ▼                  ▼
+        ┌──────────┐     ┌──────────┐    ┌──────────────┐
+        │ Audio    │     │ Visual/  │    │ Structured   │
+        │ Model    │     │ Temporal │    │ Model        │
+        └────┬─────┘     │ Model    │    └──────┬───────┘
+             │           └────┬─────┘           │
+             │                │                 │
+             └────────────────┼─────────────────┘
+                              │
+                     ┌────────▼────────┐
+                     │ Multimodal      │
+                     │ Fusion          │
+                     └────────┬────────┘
+                              │
+                     ┌────────▼────────┐
+                     │ Prediction /    │
+                     │ Analysis Output │
+                     └────────┬────────┘
+                              │
+                 ┌────────────▼────────────┐
+                 │ Explainable AI (XAI)   │
+                 │ Feature + Modality     │
+                 │ Contributions          │
+                 └────────────┬────────────┘
+                              │
+                     ┌────────▼────────┐
+                     │ Evaluation &    │
+                     │ Ablation Study  │
+                     └─────────────────┘
+```
 
-- Per-label precision, recall, and F1; macro and micro F1 for multi-label evaluation.
-- Per-label confusion matrices and error analysis.
-- ROC-AUC where appropriate and computable for the evaluated labels.
-- Grouped validation where grouping information is available, with class distribution reported.
-- Training and validation data used for model selection and threshold tuning; test data reserved for final evaluation.
-- Preprocessing fitted on training data only.
-- Fixed seeds, documented dependencies, feature settings, and experiment configurations.
-- No promised accuracy target; results will be reported as measured.
+---
 
-Current source-video separation does not prove participant-level separation. Participant identity may be unavailable, and this limitation must be documented rather than treated as resolved.
+# 📊 Modalities
 
-## Technology Stack
+The framework considers three main types of information.
 
-| Area | Tools | Implementation Status |
-|---|---|---|
-| Data preparation | Python, Pandas, NumPy | Used in current preparation workflow |
-| Media processing | yt-dlp, FFmpeg, FFprobe | Used for downloads and clip preparation |
-| Visualization | Matplotlib, Seaborn | Proposed analysis stack |
-| Classical ML | Scikit-learn, XGBoost | Proposed |
-| Deep learning | PyTorch or TensorFlow | To be selected as needed |
-| Audio | Librosa, optional pretrained embeddings | Proposed |
-| Vision | OpenCV, MediaPipe, optional pretrained encoders | Proposed |
-| Explainability | SHAP or comparable attribution tools | Proposed |
-| Prototype | Streamlit or FastAPI with a lightweight UI | Proposed |
-| Collaboration | Git / GitHub | Repository created |
+## 1. Audio
 
-Python dependencies for the packaged notebooks are listed in `requirements.txt`; FFmpeg and FFprobe must be installed separately. Research-model dependencies will be documented when selected.
+Potential audio information may include:
 
-## Expected Deliverables
+* Acoustic features
+* Speech-related features
+* Prosodic characteristics
+* Audio embeddings
+* Pretrained speech representations
 
-- Dataset audit and dataset documentation.
-- Reproducible preprocessing code and analysis notebooks.
-- Unimodal baseline results.
-- Early- and late-fusion comparisons.
-- Explainability outputs and modality-ablation results.
-- Lightweight demonstration interface.
-- Final technical report and presentation.
+Possible tools:
 
-## Indicative Timeline
+* Librosa
+* Pretrained audio/speech encoders
+* Standard machine learning classifiers
 
-| Period | Planned Work |
-|---|---|
-| Weeks 1-2 | Literature, dataset access, problem definition, and permissions audit |
-| Weeks 3-4 | Preprocessing, exploratory analysis, and dataset documentation |
-| Weeks 5-6 | Unimodal baselines and initial evaluation |
-| Weeks 7-9 | Multimodal fusion and optional temporal experiments |
-| Weeks 10-11 | Explainability, ablation, error analysis, and robustness |
-| Weeks 12-13 | Prototype, technical report, and presentation |
+---
 
-This is the proposal schedule, not a claim that these milestones are complete.
+## 2. Visual / Behavioral
 
-## Privacy, Responsible Use, and Limitations
+Potential visual information may include:
 
-Use data only under applicable access permissions and licenses. Do not collect or publish identifiable participant recordings without the necessary consent, institutional approval, and supervision. Raw videos, extracted clips, credentials, authentication cookies, and private configuration are intended to remain outside this repository; exclusion must be configured before committing project files.
+* Facial/visual behavioral features
+* Pose information
+* Attention-related features
+* Gaze-related information where available
+* Body movement
+* Temporal behavioral patterns
+* Precomputed visual embeddings
 
-Available media represent a subset of the complete annotations. Class imbalance, source availability, recording conditions, and uncertain participant grouping may affect evaluation. Small-sample results must not be presented as evidence of clinical readiness.
+Possible tools:
 
-Feature attribution describes model behavior; it does not establish causality or a clinical explanation. Model scores are not diagnoses or calibrated clinical risk estimates by default.
+* OpenCV
+* MediaPipe
+* Pretrained visual encoders
+* Lightweight temporal models
 
-**This project is an academic behavioral-analysis prototype, not a medical diagnostic device or a replacement for professional assessment.**
+---
 
-## Proposal Attribution
+## 3. Structured Behavioral Features
 
-This README is adapted from *An Explainable Multimodal AI Framework for Autism-Related Behavioral Analysis: Using Audio-Visual and Behavioral Features*, version 1.0, September 2026, prepared by **Hamza Rasheed** for the NETSOL trainee program.
+Structured features may include available behavioral observations or derived features such as:
 
-The supplied proposal is marked confidential. Its full document and reference list are not reproduced here. Candidate dataset descriptions reflect the proposal and require independent access and licensing verification before use.
+* Look-Face
+* Look-Object
+* Smile
+* Social Vocalization
+* Other dataset-specific behavioral indicators
 
-## Immediate Next Steps
+The exact features will depend on the selected dataset and its available variables.
 
-1. Review class balance in the verified subset.
-2. Prepare reproducible audio and visual feature extraction.
-3. Establish modality-specific baselines.
-4. Compare fusion strategies and perform explainability/ablation experiments.
+---
+
+# 🔀 Multimodal Fusion
+
+Two primary fusion strategies will be investigated.
+
+## Early Fusion
+
+Features from multiple modalities are combined before classification.
+
+```text
+Audio Features ─────┐
+                    │
+Visual Features ────┼──► Feature Concatenation ──► Model ──► Output
+                    │
+Behavior Features ──┘
+```
+
+### Purpose
+
+To investigate whether a joint feature representation improves behavioral analysis.
+
+---
+
+## Late Fusion
+
+Each modality is processed separately before combining model outputs.
+
+```text
+Audio ─────► Audio Model ──────┐
+                               │
+Visual ─────► Visual Model ────┼──► Fusion ──► Final Output
+                               │
+Behavior ──► Behavior Model ───┘
+```
+
+### Purpose
+
+To compare independent modality-specific learning with joint feature learning.
+
+---
+
+# ⏱️ Temporal Modeling
+
+Where the dataset provides ordered behavioral sequences, temporal modeling may be investigated.
+
+Potential approaches include:
+
+* LSTM
+* Temporal Convolutional Networks (TCN)
+* Lightweight temporal attention
+
+Temporal modeling will remain an optional research component and will only be used when the available dataset supports meaningful sequential analysis.
+
+---
+
+# 🤖 Machine Learning Approach
+
+The project will begin with relatively interpretable and resource-efficient baseline models.
+
+### Structured Data
+
+Potential models:
+
+* Logistic Regression
+* Random Forest
+* XGBoost
+
+### Audio
+
+Potential approach:
+
+```text
+Audio
+  ↓
+Preprocessing
+  ↓
+Feature Extraction / Embedding
+  ↓
+Classifier
+  ↓
+Evaluation
+```
+
+### Visual / Temporal Data
+
+Potential approaches:
+
+* Lightweight neural networks
+* Temporal models
+* Pretrained feature extractors
+
+### Multimodal Data
+
+Potential approaches:
+
+* Early fusion
+* Late fusion
+* Lightweight multimodal architectures
+
+Model complexity will be proportional to dataset size and available computational resources.
+
+---
+
+# 🔍 Explainable AI
+
+Explainability is an important component of this project.
+
+The system should not only provide an output but also investigate:
+
+> **"Which features or modalities contributed to the model's prediction?"**
+
+Potential techniques include:
+
+* SHAP
+* Feature importance
+* Modality contribution analysis
+* Local and global explanations
+
+Example:
+
+```text
+Model Output
+     │
+     ▼
+┌──────────────────────────┐
+│ Explainable AI           │
+├──────────────────────────┤
+│ Audio contribution       │
+│ Visual contribution      │
+│ Behavioral contribution  │
+│ Feature importance       │
+└──────────────────────────┘
+```
+
+### Important
+
+Feature importance or SHAP values will be interpreted as **model evidence**, not as proof of causation or clinical explanation.
+
+---
+
+# 🧪 Ablation Study
+
+Ablation experiments will investigate how much each modality contributes to the overall system.
+
+Example:
+
+| Experiment         | Audio | Visual | Behavioral |
+| ------------------ | ----: | -----: | ---------: |
+| Full Model         |     ✓ |      ✓ |          ✓ |
+| Without Audio      |     ✗ |      ✓ |          ✓ |
+| Without Visual     |     ✓ |      ✗ |          ✓ |
+| Without Behavioral |     ✓ |      ✓ |          ✗ |
+| Audio Only         |     ✓ |      ✗ |          ✗ |
+| Visual Only        |     ✗ |      ✓ |          ✗ |
+| Behavioral Only    |     ✗ |      ✗ |          ✓ |
+
+This helps determine whether the modalities provide complementary information.
+
+---
+
+# 📈 Evaluation
+
+The following evaluation measures may be used depending on the dataset and task:
+
+* Precision
+* Recall
+* F1-score
+* ROC-AUC where appropriate
+* Confusion Matrix
+* Cross-validation
+* Fold-to-fold performance variation
+* Modality ablation results
+
+Participant-level splitting will be used whenever participant identifiers are available to reduce the risk of data leakage.
+
+---
+
+# 🧪 Core Experiments
+
+The planned experiments are:
+
+| Experiment | Input                       | Approach                                 | Purpose                             |
+| ---------- | --------------------------- | ---------------------------------------- | ----------------------------------- |
+| E1         | Behavioral                  | Logistic Regression / RF / XGBoost       | Structured baseline                 |
+| E2         | Audio                       | Audio features / embeddings + classifier | Audio contribution                  |
+| E3         | Visual                      | Visual / temporal model                  | Visual contribution                 |
+| E4         | Audio + Visual              | Early Fusion                             | Multimodal comparison               |
+| E5         | Audio + Visual              | Late Fusion                              | Fusion comparison                   |
+| E6         | Audio + Visual + Behavioral | Best validated fusion                    | Primary multimodal experiment       |
+| E7         | Best Model                  | XAI                                      | Feature and modality interpretation |
+
+---
+
+# 🗂️ Dataset Strategy
+
+The project will initially focus on publicly available or appropriately derived research datasets.
+
+Potential datasets include:
+
+### AV-ASD
+
+Audio-visual behavioral data relevant to autism-related behavior recognition.
+
+**Use:** Primary candidate for audio-visual experiments, subject to access and licensing verification.
+
+---
+
+### ASD-FEAT
+
+A derived infant video feature dataset containing behavioral features such as:
+
+* Look-Face
+* Look-Object
+* Smile
+* Social Vocalization
+
+**Use:** Complementary structured/derived behavioral feature experiments.
+
+---
+
+### DREAM Dataset
+
+A dataset involving processed behavioral information such as:
+
+* 3D skeleton information
+* Head orientation
+* Eye gaze
+* Metadata
+
+**Use:** Optional temporal/behavioral experiment where the required data are accessible.
+
+---
+
+## ⚠️ Dataset Access Policy
+
+Before using any dataset, the project will verify:
+
+* Data license
+* Access requirements
+* Dataset provenance
+* Available modalities
+* Participant counts
+* Label definitions
+* Missing data
+* Privacy restrictions
+
+Private clinical data, identifiable child recordings, or newly collected participant data will **not** be used without appropriate ethics approval, informed consent, data governance, and supervision.
+
+---
+
+# 🔐 Privacy & Ethical Considerations
+
+Because the project may involve behavioral data from children or vulnerable populations, privacy and responsible AI are central considerations.
+
+The project will follow these principles:
+
+* Use public or appropriately licensed research datasets.
+* Avoid uploading sensitive raw datasets to GitHub.
+* Avoid personally identifiable information.
+* Use participant-level train/test separation where possible.
+* Document dataset limitations and demographic coverage.
+* Avoid unsupported clinical claims.
+* Do not present model outputs as medical diagnoses.
+* Do not interpret feature importance as causal evidence.
+* Document data provenance and preprocessing steps.
+
+---
+
+# ⚠️ Project Scope & Disclaimer
+
+This project is an **AI/ML research and prototype framework for autism-related behavioral analysis**.
+
+It is **not intended to**:
+
+* Replace clinicians or healthcare professionals.
+* Provide an autonomous medical diagnosis.
+* Make clinical decisions.
+* Claim that a particular feature causes autism.
+* Be deployed as a clinical diagnostic device without appropriate validation and regulatory/ethical processes.
+
+Model outputs should be interpreted as research/model-analysis results rather than clinical diagnoses.
+
+---
+
+# 🏗️ Proposed Project Structure
+
+```text
+An-Explainable-Multimodal-AI-Framework-for-Autism-Related-Behavioral-Analysis/
+│
+├── README.md
+├── .gitignore
+├── requirements.txt
+│
+├── docs/
+│   ├── proposal/
+│   ├── literature-review/
+│   └── presentations/
+│
+├── data/
+│   └── README.md
+│
+├── notebooks/
+│   ├── 01_eda/
+│   ├── 02_audio/
+│   ├── 03_visual/
+│   └── 04_multimodal/
+│
+├── src/
+│   ├── data/
+│   ├── preprocessing/
+│   ├── audio/
+│   ├── visual/
+│   ├── behavioral/
+│   ├── multimodal/
+│   ├── explainability/
+│   └── evaluation/
+│
+├── models/
+│
+├── results/
+│   ├── figures/
+│   ├── tables/
+│   └── experiments/
+│
+└── app/
+    └── dashboard/
+```
+
+The structure may evolve as the research progresses.
+
+---
+
+# 🛠️ Technology Stack
+
+### Programming
+
+* Python
+
+### Data Processing
+
+* Pandas
+* NumPy
+
+### Visualization
+
+* Matplotlib
+* Seaborn
+
+### Machine Learning
+
+* Scikit-learn
+* XGBoost
+
+### Deep Learning
+
+* PyTorch or TensorFlow
+
+### Audio Processing
+
+* Librosa
+* Pretrained audio/speech embeddings where appropriate
+
+### Computer Vision
+
+* OpenCV
+* MediaPipe
+* Pretrained visual encoders where appropriate
+
+### Explainable AI
+
+* SHAP
+* Feature attribution methods
+
+### Prototype
+
+* Streamlit or FastAPI
+* Lightweight frontend/interface
+
+### Development
+
+* Git
+* GitHub
+
+---
+
+# 📅 Project Timeline
+
+The project is planned over approximately **13 weeks**.
+
+| Weeks | Activities                                                                          |
+| ----- | ----------------------------------------------------------------------------------- |
+| 1–2   | Literature review, dataset verification, problem definition, ethics/licensing audit |
+| 3–4   | Data preprocessing, EDA, dataset documentation                                      |
+| 5–6   | Unimodal baseline models and evaluation                                             |
+| 7–9   | Multimodal fusion and temporal experiments                                          |
+| 10–11 | Explainability, ablation, error analysis, robustness                                |
+| 12–13 | Prototype, final report, presentation                                               |
+
+---
+
+# 📦 Expected Deliverables
+
+The project is expected to produce:
+
+* Research proposal
+* Literature review
+* Dataset audit/documentation
+* Reproducible preprocessing pipeline
+* Unimodal baseline models
+* Multimodal fusion model
+* Explainability module
+* Ablation study
+* Evaluation results
+* Lightweight demonstration dashboard
+* Technical documentation
+* Final research report
+* Project presentation
+
+---
+
+# ⚠️ Research Risks
+
+| Risk                              | Mitigation                                                               |
+| --------------------------------- | ------------------------------------------------------------------------ |
+| Dataset access limitations        | Verify access during Weeks 1–2 and maintain derived-feature alternatives |
+| Small dataset                     | Participant-level CV and careful interpretation                          |
+| Class imbalance                   | Class-aware metrics and appropriate validation                           |
+| Data leakage                      | Participant-level train/test separation                                  |
+| Limited computing resources       | Lightweight models and pretrained embeddings                             |
+| Multimodal synchronization issues | Use aligned/derived features or late fusion                              |
+| Privacy concerns                  | Public/derived datasets and no identifiable raw data                     |
+| Overclaiming                      | Behavioral-analysis terminology and explicit limitations                 |
+| Scope expansion                   | Lock minimum viable experiments before optional extensions               |
+
+---
+
+# 🔬 Reproducibility
+
+To improve reproducibility, the project will aim to document:
+
+* Dataset versions
+* Dataset sources
+* Preprocessing procedures
+* Feature definitions
+* Model configurations
+* Random seeds
+* Train/validation/test strategy
+* Evaluation metrics
+* Experiment configurations
+* Software dependencies
+* Model versions
+* Known limitations
+
+---
+
+# 👥 Team
+
+**Project Lead / Researcher**
+
+* Hamza Rasheed
+
+**Team Members**
+
+* Add team member names here
+
+> Team roles and responsibilities will be documented as the project progresses.
+
+---
+
+# 📚 References
+
+1. Rakotomanana, R., & Rouhafzay, A. (2025). *A Scoping Review of AI-Based Approaches for Detecting Autism Traits Using Voice and Behavioral Data*. Bioengineering. DOI: 10.3390/bioengineering12111136.
+
+2. Deng et al. (2024). *Hear Me, See Me, Understand Me: Audio-Visual Autism Behavior Recognition*. arXiv:2406.02554.
+
+3. Liaqat et al. (2026). *ASD-FEAT: A Multi-Modal Infant Video-Derived Dataset for Early ASD Risk Prediction*. Zenodo. DOI: 10.5281/zenodo.22261227.
+
+4. Billing, E. A. (2019). *Open DREAM Dataset*. DREAM Project Dataset Release.
+
+5. Wang et al. (2025). *Systematic Review and Meta-analysis of Video-Assisted Telehealth Autism Screening/Diagnosis*. Digital Health. DOI: 10.1177/20552076251386705.
+
+6. Bae et al. (2025). *Multimodal AI for risk stratification in autism spectrum disorder: integrating voice and screening tools*. npj Digital Medicine, 8, 538. DOI: 10.1038/s41746-025-01914-6.
+
+7. *Challenges in translating AI-driven ASD/ADHD diagnosis: A methodological systematic review*. (2026).
+
+8. Agrawal, A., & Agrawal, A. (2025). *Explainable AI in early autism detection: a literature review of interpretable machine learning approaches*. Discover Mental Health, 5, 98. DOI: 10.1007/s44192-025-00232-3.
+
+9. *A Scoping Review of Machine Learning and Deep Learning Methods for Autism Spectrum Disorder Diagnosis and Analysis*. (2026).
+
+10. *Data-Driven Approaches for Autism Detection: A Comprehensive Review of Machine Learning Algorithms and Datasets*. (2026).
+
+---
+
+# 📌 Current Research Pipeline
+
+```text
+Literature Review
+       ↓
+Dataset Audit
+       ↓
+Data Preprocessing
+       ↓
+EDA
+       ↓
+Unimodal Baselines
+       ↓
+Audio + Visual + Behavioral
+       ↓
+Early / Late Fusion
+       ↓
+Temporal Modeling
+       ↓
+Explainable AI
+       ↓
+Ablation & Robustness
+       ↓
+Evaluation
+       ↓
+Prototype Dashboard
+       ↓
+Final Report & Presentation
+```
+
+---
+
+# 🚀 Project Vision
+
+The long-term objective is to develop a **reproducible, explainable, privacy-conscious multimodal AI research framework** that helps investigate how different observable behavioral signals can be combined for autism-related behavioral analysis.
+
+The project emphasizes:
+
+**Multimodal Learning + Explainability + Reproducibility + Responsible AI**
+
+rather than treating model prediction as a standalone clinical diagnosis.
+
+---
+
+## 📄 Project Information
+
+**Project:** An Explainable Multimodal AI Framework for Autism-Related Behavioral Analysis
+
+**Organization:** NETSOL Technologies Pakistan
+
+**Program:** AI & Machine Learning Trainee Program
+
+**Project Type:** Applied AI/ML Research & Prototype
+
+**Duration:** 13 Weeks
+
+**Version:** 1.0
+
+**Date:** September 2026
+
+**Status:** Research & Development
