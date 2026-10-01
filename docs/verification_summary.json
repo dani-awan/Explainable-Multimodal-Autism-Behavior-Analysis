@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-30",
+  "counts": {
+    "dataset_ready": 527,
+    "train_ready": 312,
+    "val_ready": 108,
+    "test_ready": 107
+  },
+  "source_status_counts": {
+    "missing_video": 399,
+    "metadata_ok": 527,
+    "clip_exceeds_video_duration": 2
+  },
+  "annotation_checks": {
+    "missing_values": 0,
+    "duplicate_clip_ids": 0,
+    "invalid_binary_labels": 0,
+    "cross_split_clip_overlap": 0,
+    "cross_split_original_video_overlap": 0,
+    "dataset_split_rows_and_labels_match": true,
+    "metadata_valid_id_coverage_matches": true
+  },
+  "local_clip_extraction_reported": {
+    "passed": 527,
+    "failed": 0,
+    "evidence": "Final output in uploaded notebook; media not supplied for independent verification"
+  },
+  "participant_overlap": "Unknown; original-source grouping is not participant grouping"
+}
