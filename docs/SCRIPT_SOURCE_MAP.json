@@ -1,0 +1,694 @@
+{
+  "source_notebook": "AV_ASD_Research.ipynb",
+  "source_sha256": "ad92f64d92529d72626c181073d2e99b89ab8dbcfb5f5dc05f6f05369074f268",
+  "cell_numbering": "zero-based notebook cell indexes",
+  "stages": [
+    {
+      "script": "01_clean_csvs.py",
+      "source_cells": [
+        16
+      ],
+      "inputs": [
+        "dataset/csvs/dataset.csv",
+        "dataset/csvs/train.csv",
+        "dataset/csvs/val.csv",
+        "dataset/csvs/test.csv"
+      ],
+      "outputs": [
+        "dataset/csvs/*_clean.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "02_check_original_videos.py",
+      "source_cells": [
+        29
+      ],
+      "inputs": [
+        "dataset/csvs/dataset_clean.csv"
+      ],
+      "outputs": [
+        "dataset/csvs/video_check_report.csv"
+      ],
+      "environment": "main",
+      "external": [
+        "ffprobe"
+      ],
+      "originals": true,
+      "note": ""
+    },
+    {
+      "script": "03_extract_clips.py",
+      "source_cells": [
+        31
+      ],
+      "inputs": [
+        "dataset/csvs/video_check_report.csv"
+      ],
+      "outputs": [
+        "dataset/csvs/clip_extraction_report.csv"
+      ],
+      "environment": "main",
+      "external": [
+        "ffmpeg",
+        "ffprobe"
+      ],
+      "originals": false,
+      "note": "Existing clips are rechecked, not automatically overwritten."
+    },
+    {
+      "script": "04_build_ready_splits.py",
+      "source_cells": [
+        32
+      ],
+      "inputs": [
+        "dataset/csvs/video_check_report.csv",
+        "dataset/csvs/train_clean.csv",
+        "dataset/csvs/val_clean.csv",
+        "dataset/csvs/test_clean.csv",
+        "dataset/clips"
+      ],
+      "outputs": [
+        "dataset/csvs/*_ready.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "05_extract_audio_features.py",
+      "source_cells": [
+        35,
+        36
+      ],
+      "inputs": [
+        "dataset/csvs/dataset_ready.csv",
+        "dataset/csvs/train_ready.csv",
+        "dataset/csvs/val_ready.csv",
+        "dataset/csvs/test_ready.csv",
+        "dataset/clips"
+      ],
+      "outputs": [
+        "dataset/features/audio_features_all.csv",
+        "dataset/features/audio_extraction_report.csv",
+        "dataset/features/*_audio_features.csv",
+        "dataset/audio/*.wav"
+      ],
+      "environment": "main",
+      "external": [
+        "ffmpeg"
+      ],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "06_validate_audio_features.py",
+      "source_cells": [
+        37
+      ],
+      "inputs": [
+        "dataset/features/audio_features_all.csv",
+        "dataset/features/audio_extraction_report.csv",
+        "dataset/csvs/dataset_ready.csv",
+        "dataset/csvs/train_ready.csv",
+        "dataset/csvs/val_ready.csv",
+        "dataset/csvs/test_ready.csv",
+        "dataset/features/train_audio_features.csv",
+        "dataset/features/val_audio_features.csv",
+        "dataset/features/test_audio_features.csv"
+      ],
+      "outputs": [],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "07_verify_silent_audio.py",
+      "source_cells": [
+        38
+      ],
+      "inputs": [
+        "dataset/features/audio_extraction_report.csv",
+        "dataset/clips"
+      ],
+      "outputs": [
+        "dataset/features/silent_audio_check.csv"
+      ],
+      "environment": "main",
+      "external": [
+        "ffmpeg"
+      ],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "08_extract_visual_features.py",
+      "source_cells": [
+        40,
+        41
+      ],
+      "inputs": [
+        "dataset/csvs/train_ready.csv",
+        "dataset/csvs/val_ready.csv",
+        "dataset/csvs/test_ready.csv",
+        "dataset/clips"
+      ],
+      "outputs": [
+        "dataset/features/visual_features_*.csv",
+        "dataset/features/visual_extraction_report.csv",
+        "dataset/features/*_visual_features.csv",
+        "dataset/frame_previews/*.jpg"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": "Run stage 09 after this stage if any decoding or short-clip failures remain."
+    },
+    {
+      "script": "09_retry_visual_features.py",
+      "source_cells": [
+        42
+      ],
+      "inputs": [
+        "dataset/features/visual_features_all.csv",
+        "dataset/features/visual_extraction_report.csv",
+        "dataset/clips",
+        "dataset/csvs/train_ready.csv",
+        "dataset/csvs/val_ready.csv",
+        "dataset/csvs/test_ready.csv"
+      ],
+      "outputs": [
+        "dataset/features/visual_features_all.csv",
+        "dataset/features/visual_extraction_report.csv",
+        "dataset/features/visual_retry_report.csv",
+        "dataset/features/*_visual_features.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "10_build_model_inputs.py",
+      "source_cells": [
+        43
+      ],
+      "inputs": [
+        "dataset/features/audio_features_all.csv",
+        "dataset/features/visual_features_all.csv",
+        "dataset/csvs/train_ready.csv",
+        "dataset/csvs/val_ready.csv",
+        "dataset/csvs/test_ready.csv"
+      ],
+      "outputs": [
+        "dataset/model_inputs/*.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "11_train_logistic_baselines.py",
+      "source_cells": [
+        44
+      ],
+      "inputs": [
+        "dataset/model_inputs/train_y.csv",
+        "dataset/model_inputs/train_audio_X.csv",
+        "dataset/model_inputs/train_visual_X.csv",
+        "dataset/model_inputs/train_combined_X.csv",
+        "dataset/model_inputs/val_y.csv",
+        "dataset/model_inputs/val_audio_X.csv",
+        "dataset/model_inputs/val_visual_X.csv",
+        "dataset/model_inputs/val_combined_X.csv"
+      ],
+      "outputs": [
+        "models/baselines/*_logistic_regression.joblib",
+        "results/baselines/validation_baseline_comparison.csv",
+        "results/baselines/*_validation_probabilities.csv",
+        "results/baselines/*_validation_report.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "12_select_validation_thresholds.py",
+      "source_cells": [
+        45
+      ],
+      "inputs": [
+        "dataset/model_inputs/val_y.csv",
+        "models/baselines/audio_logistic_regression.joblib",
+        "models/baselines/visual_logistic_regression.joblib",
+        "models/baselines/combined_logistic_regression.joblib",
+        "results/baselines/audio_validation_probabilities.csv",
+        "results/baselines/visual_validation_probabilities.csv",
+        "results/baselines/combined_validation_probabilities.csv"
+      ],
+      "outputs": [
+        "models/baselines/*_logistic_regression_tuned.joblib",
+        "results/baselines/validation_threshold_search.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "13_diagnose_validation_predictions.py",
+      "source_cells": [
+        46
+      ],
+      "inputs": [
+        "dataset/model_inputs/val_y.csv",
+        "dataset/features/audio_extraction_report.csv",
+        "models/baselines/audio_logistic_regression_tuned.joblib",
+        "models/baselines/visual_logistic_regression_tuned.joblib",
+        "models/baselines/combined_logistic_regression_tuned.joblib",
+        "results/baselines/audio_validation_probabilities.csv",
+        "results/baselines/visual_validation_probabilities.csv",
+        "results/baselines/combined_validation_probabilities.csv"
+      ],
+      "outputs": [
+        "results/baselines/tuned_validation_per_label.csv",
+        "results/baselines/tuned_validation_silence_groups.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "14_train_random_forest.py",
+      "source_cells": [
+        47
+      ],
+      "inputs": [
+        "dataset/model_inputs/train_y.csv",
+        "dataset/model_inputs/train_combined_X.csv",
+        "dataset/model_inputs/val_y.csv",
+        "dataset/model_inputs/val_combined_X.csv"
+      ],
+      "outputs": [
+        "models/baselines/combined_random_forest_tuned.joblib",
+        "results/baselines/random_forest_*.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "15_build_late_fusion.py",
+      "source_cells": [
+        48
+      ],
+      "inputs": [
+        "dataset/model_inputs/val_y.csv",
+        "models/baselines/audio_logistic_regression.joblib",
+        "models/baselines/visual_logistic_regression.joblib",
+        "results/baselines/audio_validation_probabilities.csv",
+        "results/baselines/visual_validation_probabilities.csv"
+      ],
+      "outputs": [
+        "models/baselines/late_fusion_logistic_tuned.joblib",
+        "results/baselines/late_fusion_*.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "16_evaluate_frozen_baselines.py",
+      "source_cells": [
+        49
+      ],
+      "inputs": [
+        "dataset/model_inputs/train_y.csv",
+        "dataset/model_inputs/val_y.csv",
+        "dataset/model_inputs/test_y.csv",
+        "dataset/features/audio_extraction_report.csv",
+        "dataset/model_inputs/test_audio_X.csv",
+        "dataset/model_inputs/test_visual_X.csv",
+        "dataset/model_inputs/test_combined_X.csv",
+        "models/baselines/audio_logistic_regression_tuned.joblib",
+        "models/baselines/visual_logistic_regression_tuned.joblib",
+        "models/baselines/combined_logistic_regression_tuned.joblib",
+        "models/baselines/combined_random_forest_tuned.joblib",
+        "models/baselines/late_fusion_logistic_tuned.joblib"
+      ],
+      "outputs": [
+        "results/baselines/*_test_*.csv",
+        "results/baselines/test_silence_groups.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": "Historical replay. combined_lr is the recorded primary, not dynamically re-selected."
+    },
+    {
+      "script": "17_explain_linear_model.py",
+      "source_cells": [
+        50
+      ],
+      "inputs": [
+        "models/baselines/combined_logistic_regression_tuned.joblib",
+        "dataset/model_inputs/train_combined_X.csv",
+        "dataset/model_inputs/val_combined_X.csv"
+      ],
+      "outputs": [
+        "results/explainability/*linear_contributions.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "18_plot_explanations.py",
+      "source_cells": [
+        51
+      ],
+      "inputs": [
+        "results/explainability/example_clip_linear_contributions.csv",
+        "results/explainability/global_linear_contributions.csv",
+        "dataset/model_inputs/val_y.csv"
+      ],
+      "outputs": [
+        "results/explainability/*.png"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "19_analyze_test_errors.py",
+      "source_cells": [
+        56
+      ],
+      "inputs": [
+        "results/baselines/combined_lr_test_predictions.csv",
+        "dataset/model_inputs/test_y.csv"
+      ],
+      "outputs": [
+        "results/error_analysis/combined_lr_test_*errors.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "20_bootstrap_source_groups.py",
+      "source_cells": [
+        57
+      ],
+      "inputs": [
+        "results/baselines/combined_lr_test_predictions.csv",
+        "dataset/model_inputs/test_y.csv"
+      ],
+      "outputs": [
+        "results/error_analysis/combined_lr_group_bootstrap*.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "21_grouped_cross_validation.py",
+      "source_cells": [
+        58
+      ],
+      "inputs": [
+        "dataset/model_inputs/train_y.csv",
+        "dataset/model_inputs/train_audio_X.csv",
+        "dataset/model_inputs/train_visual_X.csv",
+        "dataset/model_inputs/train_combined_X.csv"
+      ],
+      "outputs": [
+        "results/grouped_cv/*.csv",
+        "results/grouped_cv/cv_config.json"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": "Reuses saved fold assignments when available; otherwise generates GroupKFold(shuffle=True, random_state=42)."
+    },
+    {
+      "script": "22_summarize_ablation.py",
+      "source_cells": [
+        59
+      ],
+      "inputs": [
+        "results/grouped_cv/fold_results.csv"
+      ],
+      "outputs": [
+        "results/ablation/*"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "23_summarize_pose_coverage.py",
+      "source_cells": [
+        64
+      ],
+      "inputs": [
+        "results/pose_quality_audit/pose_pilot_frames.csv",
+        "results/pose_quality_audit/pose_landmarks_audit.csv"
+      ],
+      "outputs": [
+        "results/pose_quality_audit/upper_body_joint_coverage.csv",
+        "results/pose_quality_audit/arm_coverage.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "24_compare_pose_models.py",
+      "source_cells": [
+        66
+      ],
+      "inputs": [
+        "results/pose_quality_audit/pose_pilot_report.csv",
+        "results/pose_quality_audit_full/pose_pilot_report.csv"
+      ],
+      "outputs": [
+        "results/pose_model_comparison.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "25_embedding_cross_validation.py",
+      "source_cells": [
+        69
+      ],
+      "inputs": [
+        "dataset/model_inputs/train_y.csv",
+        "dataset/model_inputs/train_audio_X.csv",
+        "results/grouped_cv/fold_assignments.csv",
+        "results/grouped_cv/fold_results.csv",
+        "dataset/features/visual_embeddings_train/train_visual_embeddings.csv",
+        "dataset/features/visual_embeddings_train/train_embedding_report.csv"
+      ],
+      "outputs": [
+        "results/embedding_grouped_cv/*.csv",
+        "results/embedding_grouped_cv/cv_config.json"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": "Preserves the notebook requirement of exactly 312 training clips and 1024 embedding dimensions."
+    },
+    {
+      "script": "26_diagnose_embedding_predictions.py",
+      "source_cells": [
+        70
+      ],
+      "inputs": [
+        "dataset/model_inputs/train_y.csv",
+        "results/grouped_cv/audio_oof_probabilities.csv",
+        "results/grouped_cv/combined_oof_probabilities.csv",
+        "results/embedding_grouped_cv/embedding_lr_oof_probabilities.csv",
+        "results/embedding_grouped_cv/audio_embedding_lr_oof_probabilities.csv"
+      ],
+      "outputs": [
+        "results/embedding_grouped_cv/oof_*diagnostics.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "27_pca_embedding_cross_validation.py",
+      "source_cells": [
+        71
+      ],
+      "inputs": [
+        "dataset/model_inputs/train_y.csv",
+        "dataset/model_inputs/train_audio_X.csv",
+        "dataset/features/visual_embeddings_train/train_visual_embeddings.csv",
+        "results/grouped_cv/fold_assignments.csv",
+        "results/grouped_cv/fold_results.csv",
+        "results/embedding_grouped_cv/fold_results.csv"
+      ],
+      "outputs": [
+        "results/embedding_pca_grouped_cv/*.csv",
+        "results/embedding_pca_grouped_cv/cv_config.json"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "28_compare_audio_and_pca.py",
+      "source_cells": [
+        72
+      ],
+      "inputs": [
+        "dataset/model_inputs/train_y.csv",
+        "results/grouped_cv/audio_oof_probabilities.csv",
+        "results/grouped_cv/fold_results.csv",
+        "results/embedding_pca_grouped_cv/audio_embedding_pca32_lr_oof_probabilities.csv",
+        "results/embedding_pca_grouped_cv/fold_results.csv"
+      ],
+      "outputs": [
+        "results/embedding_pca_grouped_cv/audio_pca_*.csv"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "29_check_modality_robustness.py",
+      "source_cells": [
+        77
+      ],
+      "inputs": [
+        "models/baselines/combined_logistic_regression_tuned.joblib",
+        "dataset/model_inputs/train_combined_X.csv",
+        "dataset/model_inputs/val_combined_X.csv",
+        "dataset/model_inputs/val_y.csv"
+      ],
+      "outputs": [
+        "results/modality_robustness/*.csv",
+        "results/modality_robustness/robustness_config.json"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "30_write_baseline_progress.py",
+      "source_cells": [
+        52
+      ],
+      "inputs": [
+        "results/baselines/frozen_baseline_test_comparison.csv",
+        "results/baselines/frozen_baseline_config.json"
+      ],
+      "outputs": [
+        "docs/BASELINE_PROGRESS.md",
+        "docs/experiment_versions.json"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "31_write_visual_progress.py",
+      "source_cells": [
+        73
+      ],
+      "inputs": [
+        "results/embedding_pca_grouped_cv/cv_comparison.csv",
+        "results/embedding_pca_grouped_cv/audio_pca_paired_summary.csv",
+        "results/embedding_pca_grouped_cv/audio_pca_label_comparison.csv",
+        "results/embedding_grouped_cv/oof_prediction_diagnostics.csv"
+      ],
+      "outputs": [
+        "docs/VISUAL_EXPERIMENT_PROGRESS.md",
+        "docs/visual_experiment_summary.json"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "32_write_robustness_progress.py",
+      "source_cells": [
+        78
+      ],
+      "inputs": [
+        "results/modality_robustness/validation_missing_modality_comparison.csv"
+      ],
+      "outputs": [
+        "docs/MODALITY_ROBUSTNESS.md",
+        "docs/VISUAL_EXPERIMENT_PROGRESS.md"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": ""
+    },
+    {
+      "script": "33_capture_environment_versions.py",
+      "source_cells": [
+        79
+      ],
+      "inputs": [],
+      "outputs": [
+        "requirements-main-snapshot.txt",
+        "requirements-pose-snapshot.txt",
+        "docs/reproducibility_inventory.json",
+        "docs/REPRODUCIBILITY_STATUS.md"
+      ],
+      "environment": "main",
+      "external": [],
+      "originals": false,
+      "note": "Run with the main interpreter; captures the existing pose interpreter separately."
+    }
+  ],
+  "notebook_cell_count": 82,
+  "existing_scripts_preserved": [
+    "scripts/extract_train_visual_embeddings.py",
+    "scripts/pose_pilot.py",
+    "scripts/pose_pilot_labeled.py",
+    "scripts/pose_quality_audit.py",
+    "scripts/pose_quality_audit_full.py",
+    "scripts/visual_embedding_pilot.py",
+    "scripts/data_preparation/download_original_videos.py",
+    "scripts/data_preparation/extract_clips.py"
+  ],
+  "limitations": [
+    "Model/data files are not included.",
+    "No Windows real-data rerun was performed here.",
+    "MediaPipe embedding extraction source was not embedded in the uploaded notebook; retain the already-working existing script.",
+    "Dependency snapshots on the user laptop remain authoritative.",
+    "The historical test split was previously inspected."
+  ]
+}

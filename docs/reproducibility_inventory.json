@@ -1,0 +1,189 @@
+{
+  "captured_utc": "2026-10-02T20:11:42.933389+00:00",
+  "environments": {
+    "main": {
+      "python_version": "3.14.6",
+      "operating_system": "Windows",
+      "architecture": "AMD64",
+      "packages": {
+        "altair": "6.3.0",
+        "anyio": "4.15.1",
+        "asttokens": "3.0.2",
+        "attrs": "26.1.0",
+        "category_encoders": "2.11.1",
+        "certifi": "2026.7.22",
+        "cffi": "2.1.1",
+        "charset-normalizer": "3.5.2",
+        "click": "8.5.0",
+        "cloudpickle": "3.1.2",
+        "colorama": "0.4.6",
+        "comm": "0.2.3",
+        "contourpy": "1.4.0",
+        "cycler": "0.12.1",
+        "debugpy": "1.8.21",
+        "decorator": "5.3.1",
+        "executing": "2.2.1",
+        "fonttools": "4.66.0",
+        "h11": "0.16.0",
+        "httptools": "0.8.0",
+        "idna": "3.20",
+        "ipykernel": "7.3.0",
+        "ipython": "9.17.1",
+        "ipython_pygments_lexers": "1.1.1",
+        "itsdangerous": "2.2.0",
+        "jedi": "0.20.0",
+        "Jinja2": "3.1.6",
+        "joblib": "1.6.0",
+        "jsonschema": "4.26.0",
+        "jsonschema-specifications": "2025.9.1",
+        "jupyter_client": "8.10.0",
+        "jupyter_core": "5.9.1",
+        "kiwisolver": "1.5.1",
+        "lazy-loader": "0.6",
+        "librosa": "1.0.0",
+        "llvmlite": "0.50.0",
+        "MarkupSafe": "3.0.3",
+        "matplotlib": "3.11.2",
+        "matplotlib-inline": "0.2.2",
+        "msgpack": "1.2.3",
+        "narwhals": "2.26.0",
+        "nest-asyncio2": "1.7.2",
+        "numba": "0.68.0",
+        "numpy": "2.5.3",
+        "opencv-python": "5.0.0.93",
+        "packaging": "26.3",
+        "pandas": "3.0.6",
+        "parso": "0.8.7",
+        "pillow": "12.3.0",
+        "pip": "26.2.1",
+        "platformdirs": "4.11.8",
+        "pooch": "1.9.0",
+        "prompt_toolkit": "3.0.53",
+        "protobuf": "7.36.2",
+        "psutil": "7.2.2",
+        "pure_eval": "0.2.4",
+        "pyarrow": "25.0.1",
+        "pycparser": "3.0",
+        "pydeck": "0.9.3",
+        "Pygments": "2.21.0",
+        "pyparsing": "3.3.3",
+        "python-dateutil": "2.9.0.post0",
+        "python-multipart": "0.0.32",
+        "pywin32": "312",
+        "pyzmq": "27.2.0",
+        "referencing": "0.37.0",
+        "requests": "2.34.2",
+        "rpds-py": "2026.6.3",
+        "scikit-learn": "1.9.1",
+        "scipy": "1.18.1",
+        "six": "1.17.0",
+        "soundfile": "0.14.0",
+        "soxr": "1.1.0",
+        "stack_data": "0.6.3",
+        "starlette": "1.7.0",
+        "streamlit": "1.64.0",
+        "threadpoolctl": "3.7.0",
+        "toml": "0.10.2",
+        "tornado": "6.5.8",
+        "traitlets": "5.16.1",
+        "typing_extensions": "4.16.0",
+        "tzdata": "2026.4",
+        "urllib3": "2.8.0",
+        "uvicorn": "0.54.0",
+        "watchdog": "6.0.0",
+        "wcwidth": "0.8.3",
+        "websockets": "16.1.1"
+      }
+    },
+    "pose": {
+      "python_version": "3.14.6",
+      "operating_system": "Windows",
+      "architecture": "AMD64",
+      "packages": {
+        "absl-py": "2.5.0",
+        "certifi": "2026.7.22",
+        "cffi": "2.1.1",
+        "contourpy": "1.4.0",
+        "cycler": "0.12.1",
+        "flatbuffers": "25.12.19",
+        "fonttools": "4.66.1",
+        "kiwisolver": "1.5.1",
+        "matplotlib": "3.11.2",
+        "mediapipe": "1.0.1",
+        "numpy": "2.5.3",
+        "opencv-contrib-python": "5.0.0.93",
+        "packaging": "26.3",
+        "pandas": "3.0.6",
+        "pillow": "12.3.0",
+        "pip": "26.1.2",
+        "psutil": "7.2.2",
+        "pycparser": "3.0",
+        "pyparsing": "3.3.3",
+        "python-dateutil": "2.9.0.post0",
+        "six": "1.17.0",
+        "sounddevice": "0.5.6",
+        "tzdata": "2026.4"
+      }
+    }
+  },
+  "script_inventory": [
+    {
+      "file": "scripts/data_preparation/download_original_videos.py",
+      "syntax_status": "PASS",
+      "error": ""
+    },
+    {
+      "file": "scripts/data_preparation/extract_clips.py",
+      "syntax_status": "PASS",
+      "error": ""
+    },
+    {
+      "file": "scripts/extract_train_visual_embeddings.py",
+      "syntax_status": "PASS",
+      "error": ""
+    },
+    {
+      "file": "scripts/pose_pilot.py",
+      "syntax_status": "PASS",
+      "error": ""
+    },
+    {
+      "file": "scripts/pose_pilot_labeled.py",
+      "syntax_status": "PASS",
+      "error": ""
+    },
+    {
+      "file": "scripts/pose_quality_audit.py",
+      "syntax_status": "PASS",
+      "error": ""
+    },
+    {
+      "file": "scripts/pose_quality_audit_full.py",
+      "syntax_status": "PASS",
+      "error": ""
+    },
+    {
+      "file": "scripts/visual_embedding_pilot.py",
+      "syntax_status": "PASS",
+      "error": ""
+    },
+    {
+      "file": "dashboard/app.py",
+      "syntax_status": "PASS",
+      "error": ""
+    },
+    {
+      "file": "dashboard/pages/2_Grouped_CV_Experiments.py",
+      "syntax_status": "PASS",
+      "error": ""
+    },
+    {
+      "file": "dashboard/pages/3_Modality_Robustness.py",
+      "syntax_status": "PASS",
+      "error": ""
+    }
+  ],
+  "project_notebooks": [],
+  "fresh_environment_installation_verified": false,
+  "full_pipeline_reproduction_verified": false
+}

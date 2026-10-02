@@ -1,0 +1,145 @@
+{
+  "runtime": "Linux Python with scikit-learn 1.8.0; user Windows runtime is different",
+  "checks": [
+    {
+      "stage": "01_clean_csvs.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "10_build_model_inputs.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "11_train_logistic_baselines.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "12_select_validation_thresholds.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "13_diagnose_validation_predictions.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "14_train_random_forest.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "15_build_late_fusion.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "16_evaluate_frozen_baselines.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "17_explain_linear_model.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "18_plot_explanations.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "19_analyze_test_errors.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "20_bootstrap_source_groups.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "21_grouped_cross_validation.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "22_summarize_ablation.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "25_embedding_cross_validation.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "26_diagnose_embedding_predictions.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "27_pca_embedding_cross_validation.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "28_compare_audio_and_pca.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "29_check_modality_robustness.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "30_write_baseline_progress.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "31_write_visual_progress.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration; not scientific score reproduction"
+    },
+    {
+      "stage": "32_write_robustness_progress.py",
+      "status": "PASS",
+      "scope": "Synthetic feature integration"
+    },
+    {
+      "stage": "23_summarize_pose_coverage.py",
+      "status": "PASS",
+      "scope": "Synthetic pose-report aggregation; not pose extraction"
+    },
+    {
+      "stage": "24_compare_pose_models.py",
+      "status": "PASS",
+      "scope": "Synthetic pose-report aggregation; not pose extraction"
+    },
+    {
+      "stage": "overwrite guard",
+      "status": "PASS"
+    },
+    {
+      "stage": "read-only preflight",
+      "status": "PASS"
+    },
+    {
+      "stage": "all 34 entry points --help",
+      "status": "PASS"
+    }
+  ],
+  "real_video_extraction_tested": false,
+  "mediapipe_extraction_tested": false,
+  "streamlit_runtime_tested": false,
+  "windows_end_to_end_reproduction_tested": false,
+  "scientific_score_reproduction_tested": false,
+  "python_files_syntax_checked": 35,
+  "standalone_stage_count": 33,
+  "read_only_project_checker_count": 1
+}

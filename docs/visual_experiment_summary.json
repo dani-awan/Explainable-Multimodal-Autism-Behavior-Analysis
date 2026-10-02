@@ -1,0 +1,107 @@
+{
+  "training_clips": 312,
+  "source_video_groups": 185,
+  "evaluation_folds": 5,
+  "threshold": 0.5,
+  "embedding_dimension": 1024,
+  "frames_per_clip": 5,
+  "pooling": "mean",
+  "pca_components": 32,
+  "audio_pca_feature_count": 76,
+  "primary_baseline_changed": false,
+  "status": "Exploratory training-only comparison",
+  "cv_comparison": [
+    {
+      "model": "audio",
+      "macro_f1_mean": 0.2728029985023869,
+      "macro_f1_std": 0.0327194577259158,
+      "micro_f1_mean": 0.3182193245016268,
+      "micro_f1_std": 0.0420593290424215,
+      "hamming_loss_mean": 0.310088146245095,
+      "hamming_loss_std": 0.0180146032622796
+    },
+    {
+      "model": "audio_embedding_lr",
+      "macro_f1_mean": 0.1979290319983184,
+      "macro_f1_std": 0.049922212123022,
+      "micro_f1_mean": 0.2859810287249066,
+      "micro_f1_std": 0.0587380348811101,
+      "hamming_loss_mean": 0.2060820279295689,
+      "hamming_loss_std": 0.0150300025766401
+    },
+    {
+      "model": "audio_embedding_pca32_lr",
+      "macro_f1_mean": 0.2606505785174674,
+      "macro_f1_std": 0.0297092126208466,
+      "micro_f1_mean": 0.3373836458247056,
+      "micro_f1_std": 0.0374917161375731,
+      "hamming_loss_mean": 0.2437717238035686,
+      "hamming_loss_std": 0.0196338562006968
+    },
+    {
+      "model": "combined",
+      "macro_f1_mean": 0.2702074836052072,
+      "macro_f1_std": 0.0475140407691194,
+      "micro_f1_mean": 0.3215368220069393,
+      "micro_f1_std": 0.0593177842189498,
+      "hamming_loss_mean": 0.294738864421064,
+      "hamming_loss_std": 0.0311699526370939
+    },
+    {
+      "model": "embedding_lr",
+      "macro_f1_mean": 0.1814468349581447,
+      "macro_f1_std": 0.037264182640654,
+      "micro_f1_mean": 0.2672586096107984,
+      "micro_f1_std": 0.051709956119075,
+      "hamming_loss_mean": 0.2153196422260283,
+      "hamming_loss_std": 0.0163765681885149
+    },
+    {
+      "model": "late_fusion",
+      "macro_f1_mean": 0.2737070626774172,
+      "macro_f1_std": 0.0514977273890747,
+      "micro_f1_mean": 0.3197486854648953,
+      "micro_f1_std": 0.0547800081312734,
+      "hamming_loss_mean": 0.2948881557603603,
+      "hamming_loss_std": 0.0245949924664483
+    },
+    {
+      "model": "visual",
+      "macro_f1_mean": 0.207693057210539,
+      "macro_f1_std": 0.0441148410209069,
+      "micro_f1_mean": 0.2336598269346693,
+      "micro_f1_std": 0.0518238218965511,
+      "hamming_loss_mean": 0.402542618419741,
+      "hamming_loss_std": 0.015192515301632
+    }
+  ],
+  "paired_fold_comparison": [
+    {
+      "metric": "macro_f1",
+      "audio_mean": 0.2728029985023869,
+      "pca_mean": 0.2606505785174673,
+      "mean_pca_benefit": -0.0121524199849195,
+      "benefit_fold_std": 0.0469128852668115,
+      "folds_pca_better": 1,
+      "folds": 5
+    },
+    {
+      "metric": "micro_f1",
+      "audio_mean": 0.3182193245016268,
+      "pca_mean": 0.3373836458247056,
+      "mean_pca_benefit": 0.0191643213230787,
+      "benefit_fold_std": 0.0329566796999052,
+      "folds_pca_better": 4,
+      "folds": 5
+    },
+    {
+      "metric": "hamming_loss",
+      "audio_mean": 0.3100881462450951,
+      "pca_mean": 0.2437717238035686,
+      "mean_pca_benefit": 0.0663164224415264,
+      "benefit_fold_std": 0.0105247834576811,
+      "folds_pca_better": 5,
+      "folds": 5
+    }
+  ]
+}

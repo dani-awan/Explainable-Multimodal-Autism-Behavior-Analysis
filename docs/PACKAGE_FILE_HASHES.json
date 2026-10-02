@@ -1,0 +1,166 @@
+[
+  {
+    "file": "README_SCRIPTS.md",
+    "sha256": "ae43f08f8bc4b2e3ee6ee07a89f4d795d125f626ecc5957463c60b347de70813"
+  },
+  {
+    "file": "docs/RUN_ORDER.md",
+    "sha256": "31145b40d27cba7882e189072ec65c356e925b89b6c0ac37ce28424b9f2340a1"
+  },
+  {
+    "file": "docs/SCRIPT_SOURCE_MAP.json",
+    "sha256": "ae7c945f7aab64313a792907b529585041471ed1b82731b54ba06ab287fbfbf1"
+  },
+  {
+    "file": "docs/VALIDATION_RESULTS.json",
+    "sha256": "5d07383c4d9a26617d0e370a16dfc763b2e0448be219eb435322616e21651da0"
+  },
+  {
+    "file": "requirements-main.in",
+    "sha256": "f9ce5e5f5c8eb499a19252defe81e54c1e6c03d068546a36530dc5406eeb7914"
+  },
+  {
+    "file": "requirements-pose.in",
+    "sha256": "2da7c595201c88d6f0ceb7de26b7bdc6201075b7faaf20f3cce3833250ecedcf"
+  },
+  {
+    "file": "scripts/reproducible/00_check_project.py",
+    "sha256": "3c8de14a11c4328098ac61475324d513c98fe5e44bdd862e6da4e64204f9fda9"
+  },
+  {
+    "file": "scripts/reproducible/01_clean_csvs.py",
+    "sha256": "f758f5b15bc1e078e8fdcd50b6b2539ac9ca9608fa43c4a9795c4e1a1bf83d1a"
+  },
+  {
+    "file": "scripts/reproducible/02_check_original_videos.py",
+    "sha256": "6c38935bbd199a6ff005110d321708ab3ab1d77cf846d9d7cbb719465d5b2e25"
+  },
+  {
+    "file": "scripts/reproducible/03_extract_clips.py",
+    "sha256": "afa157f959becb2f04f787d07718a01c5aede0d4532610025b6dbce7951ba17b"
+  },
+  {
+    "file": "scripts/reproducible/04_build_ready_splits.py",
+    "sha256": "d3a527d6710c116d0e94f84464e75bedf5c5652babbf2013e4c5c495f987f66a"
+  },
+  {
+    "file": "scripts/reproducible/05_extract_audio_features.py",
+    "sha256": "21eca7a38a6136267b0dc9244ab619f2a5d133bd33d00aa684a18444fea49552"
+  },
+  {
+    "file": "scripts/reproducible/06_validate_audio_features.py",
+    "sha256": "6db09a8bb8683724b7fdd72fc931b5b8174b458961b21985709ccd6a29d9fc81"
+  },
+  {
+    "file": "scripts/reproducible/07_verify_silent_audio.py",
+    "sha256": "e7ca2ef3495a3d989ee2080ca640918f38f2cc1ab8ef147b095e8a50e21a4bf7"
+  },
+  {
+    "file": "scripts/reproducible/08_extract_visual_features.py",
+    "sha256": "417bfc765aface99ee318058cc1cd5c6bd76bef04409c1435322f547ac0c01df"
+  },
+  {
+    "file": "scripts/reproducible/09_retry_visual_features.py",
+    "sha256": "9d33e1e340d65f467e03130541eaab44105504d9d0bc50aee475faa93f63e744"
+  },
+  {
+    "file": "scripts/reproducible/10_build_model_inputs.py",
+    "sha256": "0cdade1a31f644c8f7791833dbb6881ba77132749367538c3d1db9d33b07df88"
+  },
+  {
+    "file": "scripts/reproducible/11_train_logistic_baselines.py",
+    "sha256": "940201ec1ac1fa0cb8e617b77e3bb5ec5e0920f8a0fbda1fea19eee8f716d35f"
+  },
+  {
+    "file": "scripts/reproducible/12_select_validation_thresholds.py",
+    "sha256": "8267b63faad4eb21a6532cde2828b285640ed934de64cf297199d002f50a98d5"
+  },
+  {
+    "file": "scripts/reproducible/13_diagnose_validation_predictions.py",
+    "sha256": "8067506ca9f40920c3a3444127994ed510d8da75673b81ee3042815024df4acf"
+  },
+  {
+    "file": "scripts/reproducible/14_train_random_forest.py",
+    "sha256": "119401c306dc310554928656e2ccff7b310bac83e7ea1e75af6290a219edcd41"
+  },
+  {
+    "file": "scripts/reproducible/15_build_late_fusion.py",
+    "sha256": "1e1ecaf10ea4ca041ef8d60841aff830338fe6b2b39c44174ddc929d5d911fd1"
+  },
+  {
+    "file": "scripts/reproducible/16_evaluate_frozen_baselines.py",
+    "sha256": "2d196a62fe30bcae517226050352c4a21dd904b38defa8169c906d3d6fe2113d"
+  },
+  {
+    "file": "scripts/reproducible/17_explain_linear_model.py",
+    "sha256": "25386f26dcb0348274e5c05bd0a472edf302cd7fffade36d9eb7c7616634d274"
+  },
+  {
+    "file": "scripts/reproducible/18_plot_explanations.py",
+    "sha256": "ef52aabffd84eea669bd7da82ee0b0fcf83de72d738d306e64535acc408639f3"
+  },
+  {
+    "file": "scripts/reproducible/19_analyze_test_errors.py",
+    "sha256": "cec06176438543b19a1206c46714f3544aed775a1488326a52ee2ef2f3e8bd63"
+  },
+  {
+    "file": "scripts/reproducible/20_bootstrap_source_groups.py",
+    "sha256": "989a06771e29ab66a3e22b31e638f699034360c1bf7036cf01fefdd26e876346"
+  },
+  {
+    "file": "scripts/reproducible/21_grouped_cross_validation.py",
+    "sha256": "e0f83558fdc94a1241ac1b2a0386400596b5c5502c909f630e79c9d4b2fef644"
+  },
+  {
+    "file": "scripts/reproducible/22_summarize_ablation.py",
+    "sha256": "c2d2001978a2f6e9f235d268ada43d2284c51204748ba8b9f52bc0072bd10b31"
+  },
+  {
+    "file": "scripts/reproducible/23_summarize_pose_coverage.py",
+    "sha256": "6ab20bea79f3bfff7d3834d6ede5b54ac4588056f80638be6fb37f48aa91226e"
+  },
+  {
+    "file": "scripts/reproducible/24_compare_pose_models.py",
+    "sha256": "4a35aab0dbc1ee4aeac6d9616b29b2af11b038dff09c5174e90f69065e77f7eb"
+  },
+  {
+    "file": "scripts/reproducible/25_embedding_cross_validation.py",
+    "sha256": "deaac9aa10bca8bcfb18d94733a3afeb0bcf4b40024b6e61d906eb63b1b0c410"
+  },
+  {
+    "file": "scripts/reproducible/26_diagnose_embedding_predictions.py",
+    "sha256": "7a74bf11ec0b4e21676ee1ca73ef9802bfd19339e9ace429fa4dfa5722189f76"
+  },
+  {
+    "file": "scripts/reproducible/27_pca_embedding_cross_validation.py",
+    "sha256": "833903bf1fd03d3c6316af855c7f25bae2a466c5ff2abc49c836449128fcdd15"
+  },
+  {
+    "file": "scripts/reproducible/28_compare_audio_and_pca.py",
+    "sha256": "7a8abacb784952b95f8e786419db7e5b7c838f09574d7490c3ce60a4daff60b8"
+  },
+  {
+    "file": "scripts/reproducible/29_check_modality_robustness.py",
+    "sha256": "78f07dd74326a3b9b40645a66f983f2e641eb66fdd5c6d54b72517d7a70aa0a3"
+  },
+  {
+    "file": "scripts/reproducible/30_write_baseline_progress.py",
+    "sha256": "c914acaef882a4c640b246137fb780e0501f7ec9ebf1f5db593ccf00a6cbef48"
+  },
+  {
+    "file": "scripts/reproducible/31_write_visual_progress.py",
+    "sha256": "4234fecd7c29546fa4452647ff48a7889e8d6cb028a3d69df5586f9ec5f7a11e"
+  },
+  {
+    "file": "scripts/reproducible/32_write_robustness_progress.py",
+    "sha256": "2994409deeeae3ee718a243170cd92245ff838b73f90476cc3cd575d572676ad"
+  },
+  {
+    "file": "scripts/reproducible/33_capture_environment_versions.py",
+    "sha256": "c4e5e4681bfa160cfbd2684c14ccd4e01fc8ad7ee3c57a9eeda1907b35cc34e6"
+  },
+  {
+    "file": "scripts/reproducible/script_runtime.py",
+    "sha256": "beed8930b494eb4a5489bf358a4c5fe7bab06d23bdb44e75b6e1234739f2b5ff"
+  }
+]
