@@ -1,0 +1,6 @@
+# Keep MediaPipe in the separate pose environment used for the existing scripts.
+mediapipe
+numpy
+pandas
+pillow
+psutil

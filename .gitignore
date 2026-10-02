@@ -35,3 +35,43 @@ cookies*.txt
 *.pt
 *.pth
 *.h5
+
+# Local data and generated research artifacts
+dataset/
+models/
+results/
+notebooks/
+
+# Python environments and caches
+.venv*/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Local settings and backups
+.vscode/
+.idea/
+*.bak
+*.tmp
+*.log
+
+# Credentials and authentication files
+.env
+.env.*
+cookies*.txt
+cookies*.json
+credentials*.json
+secrets.toml
+*.pem
+*.key
+
+# Media and incomplete downloads
+*.mp4
+*.mkv
+*.webm
+*.wav
+*.m4a
+*.part
+*.ytdl
+
