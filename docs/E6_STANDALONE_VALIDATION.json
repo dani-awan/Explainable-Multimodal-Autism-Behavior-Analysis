@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "validation_environment": {
+    "os": "Linux",
+    "python": "3.12.14"
+  },
+  "syntax": "PASS",
+  "cli_and_synthetic_stages": 11,
+  "synthetic_fixture": {
+    "recordings": 60,
+    "participants": 60,
+    "folds": 5,
+    "audio_features": 224,
+    "rgb_features": 1024,
+    "behavior_features": 12,
+    "classes_in_each_evaluation_fold": 2
+  },
+  "checks": [
+    {
+      "check": "existing_output",
+      "status": "PASS"
+    },
+    {
+      "check": "protected_dataset_output",
+      "status": "PASS"
+    },
+    {
+      "check": "outside_project_output",
+      "status": "PASS"
+    },
+    {
+      "check": "feature_hash_tampering_rejected",
+      "status": "PASS"
+    },
+    {
+      "check": "default_mode_read_only",
+      "status": "PASS"
+    }
+  ],
+  "source_vs_standalone_cv": {
+    "source_cell": 122,
+    "oof_rows": 60,
+    "probability_models": 6,
+    "maximum_probability_difference": 0.0,
+    "matched_fold_metric_rows": 30,
+    "status": "PASS"
+  },
+  "scope": "Synthetic integration and original-source equivalence only; real-data Windows rerun not performed",
+  "clinical_validation": false
+}

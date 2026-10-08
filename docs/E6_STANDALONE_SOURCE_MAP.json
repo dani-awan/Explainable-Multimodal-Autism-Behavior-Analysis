@@ -1,0 +1,76 @@
+[
+  {
+    "script": "01_extract_audio.py",
+    "source_cell": 116,
+    "source_sha256": "e58b895f84eb7c2fcd183da91e2ca47db982c566fd3cc71fadaed7b83c7a9904",
+    "generated_sha256": "7e1399866f7f7219c397423d671a6e17a4e531a12f55897256a0968133e80730"
+  },
+  {
+    "script": "02_extract_rgb.py",
+    "source_cell": 119,
+    "source_sha256": "cca0b8071aa16389d346ab0fd5763a2c1ed93d0c2b4070ea72a2ba578854a7d8",
+    "generated_sha256": "fcf954930daba740115d95dde3c0a31dcb39f56bdf3debce47fb8c6a310134d9"
+  },
+  {
+    "script": "03_build_inputs.py",
+    "source_cell": 120,
+    "source_sha256": "1fe52af9a24d662a9b6aa279ca8a1641f9b0b888fc39ebda5e58b04abc4ed7ce",
+    "generated_sha256": "ab7c9332daec197f214dcc57ff0f6580675d4aed5526c140675bdd57cd9d3091"
+  },
+  {
+    "script": "04_grouped_cv.py",
+    "source_cell": 122,
+    "source_sha256": "4897e0fe4a0313b6393fb35b8b950af48d0960f3861365e019ff27423b5d4c98",
+    "generated_sha256": "6eb6fa9e5d203c057b176c5818bf6b92ad9538b1e0af48b263d85f6d7ca50250"
+  },
+  {
+    "script": "05_compare_folds.py",
+    "source_cell": 123,
+    "source_sha256": "3df96accb9c9e8757cd58b60c49732de64b47e52b28cba8b42a7b22b16cebfdf",
+    "generated_sha256": "50c3f1049f2130915615da34cefe98d22c873fd04d67daaf2f516dd229ddcf14"
+  },
+  {
+    "script": "06_branch_ablation.py",
+    "source_cell": 124,
+    "source_sha256": "f654a31d85e28f7544b940fb2262228fe4720b58ac7c903fbcfa03f2aa3e4b97",
+    "generated_sha256": "1da46d3347165c7155cfd424110373cbc07689cc7acc3d8cfd162ecb6a99948b"
+  },
+  {
+    "script": "07_missing_branch_robustness.py",
+    "source_cell": 126,
+    "source_sha256": "df8402be2e3db57e5b5961ccb2adbea6e20a17e40bf03c07447b25e91d9af9a3",
+    "generated_sha256": "ce495f362171be5d80d6b3dda1ca9bca218d3f0975927cb5fed2468315ce1a03"
+  },
+  {
+    "script": "08_explain_models.py",
+    "source_cell": 129,
+    "source_sha256": "ae87923ad50ed02bb21d4b0ec5f6b58cf9ac2dc355f613f8c9b58a388363da7f",
+    "generated_sha256": "6fa2666f2efb1c187544dc18b654caf7b437cf3b2d414d8c1e322406e068b646"
+  },
+  {
+    "script": "09_write_development_report.py",
+    "source_cell": 125,
+    "source_sha256": "98bd58261d13c38a59d2af52cbcda616e0dda7f7654d81b39886a66155f915ef",
+    "generated_sha256": "b1ac43669990bdd6b8c01563dfcf0228ff9d2ef643cadd785e33dd5072de4257"
+  },
+  {
+    "script": "10_inspect_saved_model.py",
+    "source_cell": 128,
+    "source_sha256": "d436a401d3d1f2b7385abd582abed77a53f537ce16669e95f9b6f5848bb2443f",
+    "generated_sha256": "35c908fda47430369d7c6fd3d52d7f5fdb6b2578bfb28bf26fe7661472ed1818"
+  },
+  {
+    "script": "docs/e6_dashboard_sources/5_ASD_FEAT_E6_Experiments.py.txt",
+    "source_cell": 127,
+    "source_sha256": "971da308650ab7256cfce7492becc89308f028048c6aa848a9ade40cecae7bcb",
+    "generated_sha256": "953b70a5a41d79842c39de62c435e1f2152602206fdcdbc0af366a8e6554de38",
+    "scope": "Exported dashboard source only; existing dashboard pages are not replaced"
+  },
+  {
+    "script": "docs/e6_dashboard_sources/6_E6_Model_Explanations.py.txt",
+    "source_cell": 130,
+    "source_sha256": "970b22dbf9f60708451f184c3bc15f42a8e69b2e10f48e2428ad82b12066364e",
+    "generated_sha256": "c5bff49d57291176eaa5c984c902236e1cf07317f6b81b2d987c6f26cf9fa249",
+    "scope": "Exported dashboard source only; existing dashboard pages are not replaced"
+  }
+]
