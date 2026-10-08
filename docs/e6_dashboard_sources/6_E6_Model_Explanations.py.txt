@@ -1,0 +1,164 @@
+
+from pathlib import Path
+import json
+import pandas as pd
+import streamlit as st
+
+ROOT = Path(__file__).resolve().parents[2]
+FOLDER = (
+    ROOT / "results/asd_feat/e6_explainability/"
+    "20261008T182346_451034Z"
+)
+
+st.set_page_config(
+    page_title="E6 Model Explanations",
+    page_icon="🔎",
+    layout="wide",
+)
+
+st.title("E6: Understanding Model Scores")
+st.caption(
+    "Development out-of-fold explanations of the saved "
+    "three-branch PCA Logistic Regression models."
+)
+
+required = [
+    "explanation_evidence.json",
+    "reconstruction_checks.csv",
+    "example_branch_contributions.csv",
+    "global_branch_contributions.csv",
+    "global_feature_contributions.csv",
+    "example_branch_contributions.png",
+    "example_feature_contributions.png",
+]
+
+missing = [
+    name for name in required
+    if not (FOLDER / name).is_file()
+]
+if missing:
+    st.error(f"Explanation files missing: {missing}")
+    st.stop()
+
+report = json.loads(
+    (FOLDER / "explanation_evidence.json").read_text(encoding="utf-8")
+)
+checks = pd.read_csv(FOLDER / "reconstruction_checks.csv")
+
+if (
+    report.get("status") != "PASS"
+    or not checks["status"].eq("PASS").all()
+):
+    st.error("Explanation verification did not pass.")
+    st.stop()
+
+st.warning(
+    "These contributions explain model scores, not clinical causes. "
+    "They do not determine autism severity or treatment."
+)
+
+columns = st.columns(3)
+columns[0].metric("Explained recordings", report["recordings"])
+columns[1].metric("Evaluation folds", report["folds"])
+columns[2].metric("Reconstruction checks", "PASS")
+
+st.info(
+    "Each recording is explained using its evaluation-fold model. "
+    "The reference is that model's training-fold feature means."
+)
+
+tabs = st.tabs([
+    "Example explanation",
+    "Global summaries",
+    "Verification",
+])
+
+with tabs[0]:
+    example = report["example"]
+
+    columns = st.columns(3)
+    columns[0].metric("Model score", f"{example['probability']:.4f}")
+    columns[1].metric("Threshold", f"{example['threshold']:.2f}")
+    columns[2].metric(
+        "Reference score",
+        f"{example['reference_probability']:.4f}",
+    )
+
+    st.caption(
+        "This is a predetermined development example. "
+        "The score is not a calibrated clinical risk estimate."
+    )
+
+    st.write(
+        "Positive contributions raise the ASD-class logit relative "
+        "to the reference; negative contributions lower it. "
+        "Contributions are not probability percentages."
+    )
+
+    st.dataframe(
+        pd.read_csv(
+            FOLDER / "example_branch_contributions.csv"
+        ).round(4),
+        hide_index=True,
+        width="stretch",
+    )
+
+    st.image(str(FOLDER / "example_branch_contributions.png"))
+    st.image(str(FOLDER / "example_feature_contributions.png"))
+
+    st.caption(
+        "RGB feature dimensions are latent visual features; "
+        "they are not named behaviors. Behavioral inputs "
+        "are human-annotated measurements."
+    )
+
+with tabs[1]:
+    st.subheader("Mean absolute net branch contribution")
+    st.dataframe(
+        pd.read_csv(
+            FOLDER / "global_branch_contributions.csv"
+        ).round(4),
+        hide_index=True,
+        width="stretch",
+    )
+
+    st.caption(
+        "Branch contributions sum their feature contributions "
+        "before taking the absolute value. Opposing feature "
+        "contributions can cancel."
+    )
+
+    st.subheader("Top 20 features by mean absolute contribution")
+    st.dataframe(
+        pd.read_csv(
+            FOLDER / "global_feature_contributions.csv"
+        ).head(20).round(4),
+        hide_index=True,
+        width="stretch",
+    )
+
+    st.info(
+        "These are descriptive summaries across different fold "
+        "models. Contributions depend on the reference and "
+        "do not establish causal importance."
+    )
+
+with tabs[2]:
+    st.subheader("Score reconstruction and OOF reproduction")
+    st.dataframe(
+        checks,
+        hide_index=True,
+        width="stretch",
+    )
+
+    st.write(
+        "Reference logit + feature contributions reconstructs "
+        "the saved model's decision score. Applying the sigmoid "
+        "reproduces its probability, which also matches the "
+        "saved out-of-fold probability."
+    )
+
+    st.caption(
+        "No models were retrained. Official E6 test evaluation "
+        "was not performed."
+    )

@@ -1,0 +1,226 @@
+
+from pathlib import Path
+import pandas as pd
+import streamlit as st
+
+ROOT = Path(__file__).resolve().parents[2]
+
+CV_DIR = (
+    ROOT / "results/asd_feat/e6_grouped_cv/"
+    "20261007T202805_649935Z"
+)
+ABLATION_DIR = (
+    ROOT / "results/asd_feat/e6_ablation/"
+    "20261007T203536_456317Z"
+)
+ROBUSTNESS_DIR = (
+    ROOT / "results/asd_feat/e6_robustness/"
+    "20261007T204230_919006Z"
+)
+
+st.set_page_config(
+    page_title="ASD-FEAT E6 Experiments",
+    page_icon="📊",
+    layout="wide",
+)
+
+st.title("ASD-FEAT: Multimodal Development Experiments")
+st.caption(
+    "Audio, RGB visual features and human-annotated behavior "
+    "evaluated using participant-separated cross-validation."
+)
+
+st.warning(
+    "Research prototype. These results do not establish clinical "
+    "diagnostic performance or determine autism severity or treatment."
+)
+
+
+def load_report(path, required_columns):
+    # Read existing reports without changing any experiment artifacts.
+    if not path.is_file():
+        st.error(f"Report missing: {path.relative_to(ROOT).as_posix()}")
+        st.stop()
+
+    table = pd.read_csv(path)
+    missing_columns = set(required_columns) - set(table.columns)
+
+    if missing_columns:
+        st.error(
+            f"{path.name}: missing columns "
+            f"{sorted(missing_columns)}"
+        )
+        st.stop()
+
+    if table.empty:
+        st.error(f"Report is empty: {path.name}")
+        st.stop()
+
+    return table
+
+
+comparison = load_report(
+    CV_DIR / "cv_summary.csv",
+    [
+        "model", "asd_f1_mean", "asd_f1_std",
+        "roc_auc_mean", "average_precision_mean",
+        "precision_mean", "recall_mean",
+    ],
+)
+
+ablation = load_report(
+    ABLATION_DIR / "paired_ablation_summary.csv",
+    [
+        "experiment", "metric", "full_model_mean",
+        "reduced_model_mean", "mean_full_model_benefit",
+    ],
+)
+
+robustness = load_report(
+    ROBUSTNESS_DIR / "cv_robustness_summary.csv",
+    [
+        "condition", "asd_f1_mean", "precision_mean",
+        "recall_mean", "roc_auc_mean",
+        "average_precision_mean",
+    ],
+)
+
+columns = st.columns(4)
+columns[0].metric("Development recordings", "1,510")
+columns[1].metric("Participants", "259")
+columns[2].metric("Evaluation folds", "5")
+columns[3].metric("Fixed threshold", "0.5")
+
+st.info(
+    "This experiment uses 224 audio features, 1,024 pooled RGB "
+    "features and 12 human-annotated behavioral features. "
+    "Audio and RGB are each reduced to 32 PCA components "
+    "inside each training fold."
+)
+
+tabs = st.tabs([
+    "Model comparison",
+    "Branch ablation",
+    "Missing-input simulation",
+    "Scope and limitations",
+])
+
+with tabs[0]:
+    st.subheader("Development cross-validation")
+    st.caption(
+        "Values are means across five evaluation folds. "
+        "F1 scores are not accuracy percentages."
+    )
+
+    display_columns = [
+        "model",
+        "asd_f1_mean",
+        "asd_f1_std",
+        "precision_mean",
+        "recall_mean",
+        "roc_auc_mean",
+        "average_precision_mean",
+    ]
+
+    st.dataframe(
+        comparison[display_columns].round(4),
+        hide_index=True,
+        width="stretch",
+    )
+
+    st.subheader("Mean ASD-class F1")
+    st.bar_chart(
+        comparison.set_index("model")["asd_f1_mean"]
+    )
+
+    st.write(
+        "The three-branch PCA model has the highest mean ASD-class "
+        "F1 among the initial comparisons. Late fusion has higher "
+        "mean recall, ROC-AUC and average precision. "
+        "No model is best on every metric."
+    )
+
+with tabs[1]:
+    st.subheader("What happens when a branch is removed?")
+    st.caption(
+        "Reduced models were retrained on the same folds. "
+        "Positive full-model benefit means the full model "
+        "performed better."
+    )
+
+    metric = st.selectbox(
+        "Comparison metric",
+        ablation["metric"].drop_duplicates().tolist(),
+        key="e6_ablation_metric",
+    )
+
+    selected = ablation.loc[
+        ablation["metric"] == metric
+    ].copy()
+
+    st.dataframe(
+        selected.round(4),
+        hide_index=True,
+        width="stretch",
+    )
+
+    st.write(
+        "Removing audio improved mean ASD-class F1 from 0.2920 "
+        "to 0.3142 in this configuration. Removing behavioral "
+        "features reduced ASD-class F1 in all five folds. "
+        "These findings do not show that audio is generally unhelpful."
+    )
+
+    st.caption(
+        "Fold consistency is descriptive; it is not a significance test."
+    )
+
+with tabs[2]:
+    st.subheader("Simulated missing branches")
+    st.caption(
+        "Existing fold models were kept fixed. Missing branch "
+        "features were replaced with means calculated from "
+        "that fold's training data."
+    )
+
+    st.dataframe(
+        robustness.round(4),
+        hide_index=True,
+        width="stretch",
+    )
+
+    st.bar_chart(
+        robustness.set_index("condition")["asd_f1_mean"]
+    )
+
+    st.write(
+        "RGB replacement caused the largest mean ASD-class F1 "
+        "drop. Behavioral replacement also reduced performance. "
+        "Audio replacement slightly improved F1 while lowering recall."
+    )
+
+    st.warning(
+        "This simulation does not establish reliability when "
+        "inputs are missing in real-world use."
+    )
+
+with tabs[3]:
+    st.markdown(
+        """
+- The prediction target is the dataset's current-visit ASD label.
+- Behavioral measurements are human-annotated inputs.
+- Participants are separated between training and evaluation folds.
+- Scaling and PCA are fitted using each training fold only.
+- Three development recordings lack audio and are excluded.
+- E6 official test evaluation has not been performed.
+- No final E6 model has been frozen.
+- The previously evaluated E1 test set has only one participant
+  with positive recordings, limiting generalization conclusions.
+- AV-ASD behavior-label experiments are a separate task and dataset.
+        """
+    )
+
+    st.caption(
+        "This page displays saved aggregate reports. "
+        "It does not train models or change predictions."
+    )
