@@ -1,0 +1,65 @@
+{
+  "generated_at_utc": "2026-10-08T19:51:03.311262+00:00",
+  "status": "PASS",
+  "selected_model": "rgb_behavior_pca32_lr",
+  "branches": [
+    "rgb",
+    "behavior"
+  ],
+  "threshold": 0.5,
+  "feature_count": 1036,
+  "development_recordings": 1510,
+  "development_participants": 259,
+  "test_recordings": 162,
+  "test_participants": 30,
+  "positive_test_recordings": 12,
+  "positive_test_participants": 1,
+  "comparison": [
+    {
+      "model": "rgb_behavior_pca32_lr",
+      "threshold": 0.5,
+      "macro_f1": 0.6114072494669509,
+      "asd_f1": 0.3571428571428571,
+      "precision": 0.2272727272727272,
+      "recall": 0.8333333333333334,
+      "specificity": 0.7733333333333333,
+      "balanced_accuracy": 0.8033333333333333,
+      "accuracy": 0.7777777777777778,
+      "roc_auc": 0.8727777777777777,
+      "average_precision": 0.2607763698345025,
+      "mcc": 0.3572062457503811,
+      "tp": 10,
+      "fp": 34,
+      "fn": 2,
+      "tn": 116
+    },
+    {
+      "model": "dummy_development_prior",
+      "threshold": 0.5,
+      "macro_f1": 0.4807692307692308,
+      "asd_f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "specificity": 1.0,
+      "balanced_accuracy": 0.5,
+      "accuracy": 0.925925925925926,
+      "roc_auc": 0.5,
+      "average_precision": 0.074074074074074,
+      "mcc": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 12,
+      "tn": 150
+    }
+  ],
+  "metric_recalculation": "PASS",
+  "model_sha256": "2c8e9d9c126e9a7a8134eb9792550254de3747847b96aeaca1e396bae57327d4",
+  "source_sha256": {
+    "results/asd_feat/e6_reproduction/12_freeze_rgb_behavior_model/20261008T192951_063340Z/frozen_model_config.json": "8c374c08fefeeaf1897207347fc790a015f5b1d3176ffd7de3e06e31bb18ced3",
+    "results/asd_feat/e6_reproduction/15_evaluate_frozen_rgb_behavior/20261008T194502_516518Z/frozen_test_evaluation.json": "2a5c380fbd1daccaa16206060bd7c99922a22603baca3747f11ee1e6f07719f9",
+    "results/asd_feat/e6_reproduction/15_evaluate_frozen_rgb_behavior/20261008T194502_516518Z/frozen_test_comparison.csv": "dc89ab61a0e1a53ff7139c5ad5340c6bc0ae4f220908e1b5aaa02fad0468b9dd",
+    "results/asd_feat/e6_reproduction/15_evaluate_frozen_rgb_behavior/20261008T194502_516518Z/frozen_test_predictions.csv": "7408910ff4344251aea5b9cddc7af77dbad2db02af9caa20716b6d58eaffb66a"
+  },
+  "interpretation_limits": "The 12 positive test recordings represent 1 participant(s). Repeated recordings are correlated; these recording-level results do not establish generalization across positive participants.\n\nThe official test had previously been evaluated for E1. It is not an untouched test set. The E6 candidate was selected after exploratory development comparisons, without nested selection validation. Human-coded behavioral features are required. Clinical diagnosis, disease-stage assessment and treatment recommendations are not validated.",
+  "scope": "Aggregate research documentation; no fitting, tuning or new predictions"
+}
