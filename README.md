@@ -1,3 +1,46 @@
+<!-- FINAL_IMPLEMENTATION_STATUS -->
+# Current Implementation and Submission Status
+
+The feature-based research prototype and final submission package are complete.
+The proposal below describes the original plan; proposed tools and optional
+extensions are not all implemented capabilities.
+
+## Implemented
+
+- AV-ASD: 527 usable clips; 312 train, 108 validation and 107 test clips.
+- Audio, visual and combined baselines with frozen evaluation.
+- ASD-FEAT: 1,510 aligned development recordings and participant-disjoint CV.
+- Audio/RGB/behavior comparisons, early and late fusion, branch ablation,
+  simulated missing-branch checks and linear contribution explanations.
+- Selected frozen RGB plus human-coded behavior model evaluated on 162 recordings.
+- Streamlit dashboard with existing-recording and compatible feature CSV analysis.
+- Standalone Windows reproduction and ten passing input-validation checks.
+- Final research report, editable presentation and demonstration guide.
+
+## Interpretation and Remaining Reviews
+
+The dashboard requires compatible prepared features. Raw photo, audio and video
+extraction, temporal models and clinical assessment are not implemented.
+Model scores are uncalibrated outputs, not validated chances of autism.
+All positive ASD-FEAT official-test recordings represent one participant.
+AV-ASD and ASD-FEAT results concern different tasks and must remain separate.
+Dataset permissions and remaining bibliography verification require review
+before wider publication or redistribution.
+
+## Team
+
+Muhammad Danial, Hamza Rasheed and Muhammad Freeh.
+
+## Final Deliverables
+
+- [Research report](docs/FINAL_RESEARCH_REPORT.pdf)
+- [Editable presentation](presentations/FINAL_RESEARCH_PRESENTATION.pptx)
+- [Demo guide](docs/FINAL_DEMO_GUIDE.md)
+- [Submission checklist](docs/FINAL_SUBMISSION_CHECKLIST.md)
+
+## Original Project Plan and Supporting Documentation
+<!-- END_FINAL_IMPLEMENTATION_STATUS -->
+
 # An Explainable Multimodal AI Framework for Autism-Related Behavioral Analysis
 
 > **An AI/ML research and prototype project for analyzing autism-related behavioral patterns using audio, visual/behavioral, and structured behavioral features.**
@@ -675,7 +718,8 @@ To improve reproducibility, the project will aim to document:
 
 **Team Members**
 
-* Add team member names here
+* Muhammad Danial
+* Muhammad Freeh
 
 > Team roles and responsibilities will be documented as the project progresses.
 
