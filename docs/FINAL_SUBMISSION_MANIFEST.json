@@ -1,0 +1,46 @@
+{
+  "scope": "Final research prototype report, presentation and read-only submission aids",
+  "experiments_retrained": false,
+  "files": [
+    {
+      "path": "README_FINAL_SUBMISSION.md",
+      "bytes": 1520,
+      "sha256": "0542c8a40f3b4c508d0369272ffcfd5f396201da58241072147ed5a11934940f"
+    },
+    {
+      "path": "docs/FINAL_DEMO_GUIDE.md",
+      "bytes": 2969,
+      "sha256": "a7f68291fe0a18a4cade4521f3bb577d24523d065f05859530e3b9fa7f48d3c8"
+    },
+    {
+      "path": "docs/FINAL_RESEARCH_REPORT.docx",
+      "bytes": 46081,
+      "sha256": "02d8f7ab6393f79ebedf3d4a0eca743399f4e6bb483cb017db92d35bdcee5c34"
+    },
+    {
+      "path": "docs/FINAL_RESEARCH_REPORT.md",
+      "bytes": 17251,
+      "sha256": "4e24e448c2388659fd47da7eae13e5fbb58f8b4637ac6f84584692b1767e7b06"
+    },
+    {
+      "path": "docs/FINAL_RESEARCH_REPORT.pdf",
+      "bytes": 136255,
+      "sha256": "18b9fa60d90ae5ad7613704bcf2428e72e2b4af3fd5e50db5299c2681a767056"
+    },
+    {
+      "path": "docs/FINAL_SUBMISSION_CHECKLIST.md",
+      "bytes": 2219,
+      "sha256": "fb90952d3be8a208e96319613bfbe54949116384e0eba85767c94eeb1006d24b"
+    },
+    {
+      "path": "presentations/FINAL_RESEARCH_PRESENTATION.pptx",
+      "bytes": 52723,
+      "sha256": "77cd4a92e6a0894403da577b674effd598d31e92ccf6e75bd7fc1059b701720f"
+    },
+    {
+      "path": "scripts/check_final_submission.py",
+      "bytes": 3648,
+      "sha256": "78f44163e440148bbe12885fcc8a0031806691ae36eec6f1abb667c9402a4a8b"
+    }
+  ]
+}
