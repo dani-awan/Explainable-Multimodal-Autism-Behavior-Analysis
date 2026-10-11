@@ -29,7 +29,7 @@ before wider publication or redistribution.
 
 ## Team
 
-Hamza Rasheed, Muhammad Danial and Muhammad Freeh.
+Muhammad Danial, Hamza Rasheed and Muhammad Freeh.
 
 ## Final Deliverables
 
