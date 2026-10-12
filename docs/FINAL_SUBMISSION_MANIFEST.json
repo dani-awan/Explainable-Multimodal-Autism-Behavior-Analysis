@@ -1,46 +1,123 @@
 {
-  "scope": "Final research prototype report, presentation and read-only submission aids",
+  "generated_at_utc": "2026-10-12T13:45:17.789615+00:00",
+  "scope": "Installed research submission and AV-ASD video extension files",
   "experiments_retrained": false,
   "files": [
+    {
+      "path": "README.md",
+      "bytes": 26948,
+      "sha256": "4d41ca5a64f39c2c896d4ede6f1a4a033ea4ef5e698944ded7f4b86f97a9567c"
+    },
     {
       "path": "README_FINAL_SUBMISSION.md",
       "bytes": 1520,
       "sha256": "0542c8a40f3b4c508d0369272ffcfd5f396201da58241072147ed5a11934940f"
     },
     {
+      "path": "dashboard/pages/9_Video_Behavior_Analysis.py",
+      "bytes": 8735,
+      "sha256": "077344f6c137473087317fa0b9f7f7ea911562ab598125a676eeffe60a4e8ba2"
+    },
+    {
       "path": "docs/FINAL_DEMO_GUIDE.md",
-      "bytes": 2969,
-      "sha256": "a7f68291fe0a18a4cade4521f3bb577d24523d065f05859530e3b9fa7f48d3c8"
+      "bytes": 4122,
+      "sha256": "dc653dffebaa9f69f1232676c6e89a6a046d1a2c298ead7abe70c877c7bab186"
     },
     {
       "path": "docs/FINAL_RESEARCH_REPORT.docx",
-      "bytes": 46081,
-      "sha256": "02d8f7ab6393f79ebedf3d4a0eca743399f4e6bb483cb017db92d35bdcee5c34"
+      "bytes": 47385,
+      "sha256": "cdd6bc341298cd0e8b4586706455f0a29d946b04cb6d25543eeb95b0ac1fea51"
     },
     {
       "path": "docs/FINAL_RESEARCH_REPORT.md",
-      "bytes": 17251,
-      "sha256": "4e24e448c2388659fd47da7eae13e5fbb58f8b4637ac6f84584692b1767e7b06"
+      "bytes": 20599,
+      "sha256": "0e454ff3c91030227381aa1eaf42dda793eb32eb64b2fc76b6f2a1c4b7e32b12"
     },
     {
       "path": "docs/FINAL_RESEARCH_REPORT.pdf",
-      "bytes": 136255,
-      "sha256": "18b9fa60d90ae5ad7613704bcf2428e72e2b4af3fd5e50db5299c2681a767056"
+      "bytes": 151124,
+      "sha256": "0821ba30dd7dc86dddc13248cdb6fccef529cbda287c649a252acdee9097000e"
     },
     {
       "path": "docs/FINAL_SUBMISSION_CHECKLIST.md",
-      "bytes": 2219,
-      "sha256": "fb90952d3be8a208e96319613bfbe54949116384e0eba85767c94eeb1006d24b"
+      "bytes": 2803,
+      "sha256": "c929c9a5692c2a770771bee1aa20d446c4bef386e92496ad7f1f362e53c5ef3b"
+    },
+    {
+      "path": "docs/NETSOL_AV_ASD_Project_Brief.pdf",
+      "bytes": 14686,
+      "sha256": "0214dcd3d361695b6b287144cc680fb7ddcc069dd50727681637749ff0a3ba1e"
+    },
+    {
+      "path": "docs/VIDEO_UPLOAD_FINAL_STATUS.md",
+      "bytes": 1189,
+      "sha256": "e2a7e104b85e7420fc440a4b029b89dde02dfc1e17eb81f2c86b1749a64473ed"
     },
     {
       "path": "presentations/FINAL_RESEARCH_PRESENTATION.pptx",
-      "bytes": 52723,
-      "sha256": "77cd4a92e6a0894403da577b674effd598d31e92ccf6e75bd7fc1059b701720f"
+      "bytes": 58991,
+      "sha256": "cfd89ad3e60c868a7cac0964fa1e7c90c49dcbbd1c95250dc118af242255c116"
+    },
+    {
+      "path": "results/video_upload_cases/20261011T195412_015353Z/upload_case_validation.json",
+      "bytes": 1575,
+      "sha256": "5c536d893aa05ca5e2f57fad25369376d496f26acb6c4803392331ff2308e1e0"
+    },
+    {
+      "path": "results/video_upload_explanations/20261011T202257_847333Z/validation.json",
+      "bytes": 219,
+      "sha256": "174b494d5522f229944d2a114894b5e29a80389d45d877038d107ac080f2cfce"
+    },
+    {
+      "path": "results/video_upload_validation/20261011T194344_005289Z/validation.json",
+      "bytes": 1906,
+      "sha256": "72c3c410c8063b2d8478dfeca697ef4bc2e255138f301f3f0e7b65b313c39a5e"
     },
     {
       "path": "scripts/check_final_submission.py",
       "bytes": 3648,
       "sha256": "78f44163e440148bbe12885fcc8a0031806691ae36eec6f1abb667c9402a4a8b"
+    },
+    {
+      "path": "scripts/finalize_video_submission.py",
+      "bytes": 8263,
+      "sha256": "748ff1fcc29068242911e9ed7bcec41123e08b49fb9a1dd056de0de9dc521f0b"
+    },
+    {
+      "path": "scripts/video_upload/check_upload_cases.py",
+      "bytes": 3200,
+      "sha256": "3460670208f16f7caf42d497dfe8ce0f567cc6ff62d81706969fac275c6092e0"
+    },
+    {
+      "path": "scripts/video_upload/features.py",
+      "bytes": 9528,
+      "sha256": "615683ede3590c253b856b6da3adef46ca58bcbb83fe8a2bcbbf33bb974676af"
+    },
+    {
+      "path": "scripts/video_upload/report_details.py",
+      "bytes": 3252,
+      "sha256": "eda5f999b5fa7b9a846606df7e332e734032f3034f130ae124149802605147dc"
+    },
+    {
+      "path": "scripts/video_upload/verify_explanations.py",
+      "bytes": 1726,
+      "sha256": "3ec02c06f004037fb931eb1acb293ccc95013f46ea8e292c647e25150f8c9d41"
+    },
+    {
+      "path": "scripts/video_upload/verify_video_features.py",
+      "bytes": 4006,
+      "sha256": "de3017883e8dcef0af22b5767db6b7e84e8fe2d557b23025a2fb55f0c3373705"
     }
-  ]
+  ],
+  "frozen_artifacts": [
+    {
+      "path": "models/baselines/combined_logistic_regression_tuned.joblib",
+      "sha256": "2a2636966be5f977367569a73db72c7dbdbd90f2e05e7240d014ee443de39e3e"
+    },
+    {
+      "path": "results/asd_feat/e6_reproduction/12_freeze_rgb_behavior_model/20261008T192951_063340Z/rgb_behavior_pca32_lr_frozen.joblib",
+      "sha256": "2c8e9d9c126e9a7a8134eb9792550254de3747847b96aeaca1e396bae57327d4"
+    }
+  ],
+  "limits": "File hashes, syntax and recorded evidence only; no fresh inference or clinical validation."
 }

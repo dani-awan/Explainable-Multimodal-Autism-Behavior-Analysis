@@ -27,4 +27,14 @@
 - Preserve the one-positive-participant limitation and recording-level interpretation.
 - Do not describe uncalibrated model scores as a clinical diagnosis, severity level or validated chance of autism.
 
-Independent participant validation, calibration and verified raw-media extraction are future research. They are not implemented capabilities of this feature-based demonstration.
+Independent participant validation, calibration, automated ASD-FEAT raw-media extraction and temporal modeling remain future research. The separate AV-ASD MP4 feature-extraction workflow is implemented and has passed the recorded software checks.
+
+
+## AV-ASD MP4 extension completion
+
+- MP4 analysis, summary, exact linear explanations and HTML/JSON export implemented.
+- Existing-video reproduction 5/5; upload cases 5/5; explanation checks 1070/1070.
+- Corrected Word/PDF report and 14-slide presentation installed.
+- Team order: Muhammad Danial, Hamza Rasheed and Muhammad Freeh.
+- New-video accuracy and clinical reliability are not established.
+- GitHub review and publishing of this extension remain separate tasks.

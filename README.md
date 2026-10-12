@@ -19,8 +19,13 @@ extensions are not all implemented capabilities.
 
 ## Interpretation and Remaining Reviews
 
-The dashboard requires compatible prepared features. Raw photo, audio and video
-extraction, temporal models and clinical assessment are not implemented.
+The AV-ASD video page accepts local MP4 uploads and extracts 58 features.
+It provides ten behavioral-label scores, a summary, linear explanations
+and HTML/JSON exports. Its frozen threshold is 0.3.
+ASD-FEAT analysis separately requires compatible prepared I3D features
+and human-coded behavior measurements.
+Raw photo analysis, standalone audio upload, temporal models and clinical
+assessment are not implemented. New-video accuracy is not established.
 Model scores are uncalibrated outputs, not validated chances of autism.
 All positive ASD-FEAT official-test recordings represent one participant.
 AV-ASD and ASD-FEAT results concern different tasks and must remain separate.
