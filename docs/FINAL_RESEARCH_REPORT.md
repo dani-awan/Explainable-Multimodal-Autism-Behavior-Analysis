@@ -1,14 +1,12 @@
-# An Explainable Multimodal AI Framework for Autism-Related Behavioral Analysis
-
-Final research prototype report
+# An Explainable Multimodal AI Framework for Autism Related Behavioral Analysis
 
 ## Research scope and abstract
 
-Team: Hamza Rasheed, Muhammad Danial and Muhammad Freeh. Applied AI and machine learning research prototype. Prepared 9 October 2026.
+Team: Muhammad Danial, Hamza Rasheed and Muhammad Freeh. Applied AI and machine learning research prototype. Updated 12 October 2026 with the AV-ASD MP4 extension.
 
-This report consolidates two separate experiments: AV-ASD clip-level recognition of ten behavioral labels and ASD-FEAT recording-level classification of current-visit ASD-associated annotations. It explains the implemented models, empirical comparisons, reproducibility evidence and limitations. The framework supports research demonstration using prepared features. It does not establish clinical diagnosis, severity or future outcome prediction.
+This report consolidates two separate experiments: AV-ASD clip-level recognition of ten behavioral labels and ASD-FEAT recording-level classification of current-visit ASD-associated annotations. It explains the implemented models, empirical comparisons, reproducibility evidence and limitations. The framework supports prepared-feature research demonstrations and a separate local MP4 workflow using the frozen AV-ASD baseline. It does not establish clinical diagnosis, severity or future outcome prediction.
 
-Abstract. We compared lightweight audio, visual and structured behavioral classifiers, feature fusion and probability fusion. The available AV-ASD subset contained 527 clips split into 312 training, 108 validation and 107 test clips. The validation-selected combined logistic-regression baseline reached test Macro F1 0.2937 and Micro F1 0.3544. ASD-FEAT development comparisons used 1,510 aligned recordings from 259 participants with five participant-disjoint evaluation folds. RGB plus human-coded behavior gave the highest observed mean development ASD F1, 0.3142, among the reported exploratory configurations. Its frozen evaluation on 162 recordings reached ASD F1 0.3571, precision 0.2273 and recall 0.8333. All twelve positive test recordings came from one participant, so the test cannot establish generalization across positive participants. Exact linear contribution checks, same-environment reproduction and a feature-upload dashboard support inspection and demonstration. Independent validation, verified media extraction and licensing clarification remain necessary for broader use.
+Abstract. We compared lightweight audio, visual and structured behavioral classifiers, feature fusion and probability fusion. The available AV-ASD subset contained 527 clips split into 312 training, 108 validation and 107 test clips. The validation-selected combined logistic-regression baseline reached test Macro F1 0.2937 and Micro F1 0.3544. ASD-FEAT development comparisons used 1,510 aligned recordings from 259 participants with five participant-disjoint evaluation folds. RGB plus human-coded behavior gave the highest observed mean development ASD F1, 0.3142, among the reported exploratory configurations. Its frozen evaluation on 162 recordings reached ASD F1 0.3571, precision 0.2273 and recall 0.8333. All twelve positive test recordings came from one participant, so the test cannot establish generalization across positive participants. Exact linear contribution checks, same-environment reproduction, feature upload and a tested AV-ASD MP4 workflow support inspection and demonstration. Independent new-video evaluation, compatible ASD-FEAT raw-media integration and licensing clarification remain necessary for broader use.
 
 Evidence basis. Numeric results come from supplied experiment reports and their consolidated review, not from new training during preparation of this report. The separately supplied handoff records dashboard validation and Windows reproduction. This is a submission report for an exploratory prototype, rather than a clinical validation study.
 
@@ -109,11 +107,37 @@ Exact linear explanations multiply transformed feature values by fitted logistic
 
 The supplied E6 run records successful explanation reconstruction and out-of-fold reproduction for all 1,510 development recordings. A selected three-branch example has contributions of -0.9150 for audio, -0.2410 for RGB and +0.4054 for behavior, with score 0.0283. This example concerns the three-branch CV model, not the selected two-branch frozen model.
 
-The Streamlit Research Analysis page verifies a trusted local frozen artifact, accepts an existing test-recording demonstration or a compatible one-row CSV, restores the frozen feature order and exports HTML and JSON reports. It requires 1,024 compatible pooled I3D RGB features and twelve human-coded values. Raw photo, audio and video extraction is not implemented.
+The Streamlit Research Analysis page verifies a trusted local frozen artifact, accepts an existing test-recording demonstration or a compatible one-row CSV, restores the frozen feature order and exports HTML and JSON reports. It requires 1,024 compatible pooled I3D RGB features and twelve human-coded values. This ASD-FEAT page does not extract those inputs from arbitrary photos, audio or video. A separate AV-ASD page now extracts 58 features from local MP4s, as described below.
 
 Recording 1 replay and its exported CSV both produce the displayed score 16.61%, below threshold 0.5. The uploaded HTML report records 1,036 finite values and contributions -0.740099 for RGB and +0.969165 for behavior, with intercept -1.842596 and reconstructed logit -1.613530. This score is an uncalibrated model output, not a validated chance of autism. Neither threshold outcome establishes or excludes autism.
 
 Windows validation reports ten successful checks: valid and reordered columns are accepted; missing or extra columns, multiple rows, an empty table, missing values, infinite values, text values and duplicate column names are rejected. Those checks exercise the validation function with synthetic tables. They do not constitute browser automation or validation of arbitrary feature provenance.
+
+## AV ASD video upload extension
+
+The Video Behavior Analysis page uses the frozen AV-ASD combined Logistic Regression model, with 44 audio features, 14 handcrafted visual features, ten labels and threshold 0.30. It is separate from the ASD-FEAT model and does not replace that model's prepared I3D and human-coded inputs.
+
+### Upload and reporting workflow
+
+The page accepts local MP4 files with an audio track, limited to 120 seconds, 7,200 frames and 200 MiB. OpenCV decodes sampled frames; FFmpeg provides audio extraction and fallback decoding. Silent audio is accepted and flagged, while an absent audio track is rejected. Temporary upload files are removed after extraction.
+
+The report displays each label score and its threshold outcome, a readable recording summary, input-quality details and the ten largest absolute feature contributions per label. HTML and JSON downloads retain model and video hashes. Selecting a different video clears the previous report before the next analysis.
+
+### Feature explanations
+
+For each label, standardized feature values multiplied by fitted coefficients yield logit contributions. The intercept plus all 58 contributions reconstructs the model decision logit; its sigmoid reproduces the score. Audio and visual branch sums are included. Positive and negative contributions raise or lower the logit; they do not measure symptom severity or causal effects. Top-ten tables omit the remaining features and intercept.
+
+### Completed validation
+
+Five existing clips reproduced saved features, probabilities and threshold predictions. Five synthetic upload cases passed: silent audio and a short clip were accepted; missing audio, excessive duration and corrupt MP4 were rejected. The actual fitted model passed 1,070 explanation reconstruction checks across 107 test recordings, with a maximum score difference of 6.66133814775e-16.
+
+Exported HTML reports were inspected for summary content and all ten explanation tables; exported branch sums reproduced the logits. The user confirmed that changing the selected video clears the previous report. These checks establish tested software behavior and arithmetic consistency, rather than independent prediction accuracy on arbitrary new videos.
+
+### Interpretation and validation evidence
+
+Above-threshold predictions do not confirm that a behavior occurred. Scores are uncalibrated behavioral-label outputs and do not establish autism, severity or clinical probability. Background, camera and audio conditions may influence predictions. No model fitting, threshold tuning or changes to frozen experiment predictions were required for this extension.
+
+Evidence: video_upload_validation/20261011T194344_005289Z; video_upload_cases/20261011T195412_015353Z; video_upload_explanations/20261011T202257_847333Z. Each directory under results contains its validation JSON. The final exported report was inspected on 11 October 2026.
 
 ## Discussion conclusion and evidence register
 
@@ -121,9 +145,9 @@ The framework supplies reproducible exploratory evidence on two distinct researc
 
 Remaining scientific limitations include imbalanced labels, correlated recordings, single-positive-participant test support, exploratory winner selection, prior test exposure, download-dependent AV-ASD inclusion and unverified participant separation on AV-ASD. Demographic fairness, external validity, calibrated clinical risk and fully automated human-behavior extraction are not established.
 
-Future work should prioritize independent evaluation across multiple positive participants and verified feature provenance. Nested development evaluation can assess candidate selection, and calibration would require a documented development-only protocol followed by suitable independent evaluation. Raw-media integration requires the original I3D checkpoint, matching preprocessing and a validated source for the twelve behavioral measurements. Temporal sequence models remain optional and require preserved ordered data.
+Future work should prioritize independent evaluation across multiple positive participants and verified feature provenance. Nested development evaluation can assess candidate selection, and calibration would require a documented development-only protocol followed by suitable independent evaluation. Automated ASD-FEAT raw-media integration requires the original I3D checkpoint, matching preprocessing and a validated source for the twelve behavioral measurements. The separate AV-ASD MP4 workflow does not supply these inputs. Temporal sequence models remain optional and require preserved ordered data.
 
-Conclusion. The implemented research prototype compares feature branches and fusion, records ablation and simulated robustness, reproduces prepared-input experiments and exports model explanations. Its present deliverable is a local feature-based research dashboard. It should not be presented as a clinical assessment or an automated upload-and-diagnose service.
+Conclusion. The implemented research prototype compares feature branches and fusion, records ablation and simulated robustness, reproduces prepared-input experiments and exports model explanations. Its present deliverable is a local research dashboard with prepared-feature analysis and an AV-ASD MP4 workflow. The latter produces ten behavioral-label scores, summaries and exact linear explanations. It should not be presented as a clinical assessment or an automated upload-and-diagnose service.
 
 Evidence register. The supplied FINAL_EXPERIMENT_REVIEW.txt consolidates ASD_FEAT_E1_RESULTS.md, ASD_FEAT_E6_DEVELOPMENT_RESULTS.md, ASD_FEAT_E6_ROBUSTNESS.md, ASD_FEAT_E6_FROZEN_RESULTS.md, ASD_FEAT_E6_SELECTED_MODEL_CARD.md, MODEL_CARD.md and TRAINING_REPRODUCTION.md. The supplied work handoff records RESEARCH_ANALYSIS_UI_VALIDATION.md, RESEARCH_INPUT_VALIDATION.json, standalone Windows reproduction and explanation outputs. This consolidation checks consistency of supplied reports, not a fresh audit of every local artifact.
 
