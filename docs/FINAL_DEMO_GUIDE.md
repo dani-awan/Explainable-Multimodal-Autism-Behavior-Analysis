@@ -1,6 +1,17 @@
+<!-- RESEARCH_EXTENSION_STATUS -->
+## Research extension demonstration
+
+Team: Muhammad Danial, Hamza Rasheed, Muhammad Fareed.
+
+After the original prepared-feature and MP4 demonstration, open Research Extensions, DREAM Data Quality and DREAM Activity Results.
+Explain three distinct endpoints: AV-ASD behavior labels, ASD-FEAT visit annotations and DREAM therapy activity.
+Show that XGBoost and the tested temporal networks did not improve the selected LR mean ASD F1. Show DREAM RF macro F1 mean 0.5911 against dummy 0.2716, and explain the participant-disjoint evaluation.
+Use slides 15 to 19 for the extension findings and remaining validation. Do not retrain or tune thresholds during the demonstration. DREAM is a separate activity experiment, not external validation of autism diagnosis.
+<!-- END_RESEARCH_EXTENSION_STATUS -->
+
 # Final demonstration guide
 
-Team: Muhammad Danial, Hamza Rasheed and Muhammad Freeh.
+Team: Muhammad Danial, Hamza Rasheed and Muhammad Fareed.
 
 ## Launch the existing project
 

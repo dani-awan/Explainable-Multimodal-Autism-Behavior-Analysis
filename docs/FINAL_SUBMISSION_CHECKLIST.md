@@ -1,3 +1,19 @@
+<!-- RESEARCH_EXTENSION_STATUS -->
+## Research extension status
+
+- [x] XGBoost and held-out Tree SHAP experiments completed.
+- [x] Ordered RGB preparation and LSTM/TCN development comparisons completed.
+- [x] DREAM release integrity, quality audit, activity features and grouped CV completed.
+- [x] Experiment results documentation and dashboard syntax checks completed on Windows.
+- [x] Final report and presentation updated with findings and verified reference metadata.
+- [ ] Inspect the updated dashboard pages in the local browser before the presentation.
+- [ ] Review and merge the extension source/documentation update on GitHub.
+- [ ] Resolve release-specific permissions and access provenance before wider redistribution or commercial use.
+- [ ] Conduct suitable independent clinical validation before any diagnostic claim.
+
+The latter two items require external evidence or authorization; document preparation cannot mark them complete.
+<!-- END_RESEARCH_EXTENSION_STATUS -->
+
 # Final submission checklist
 
 ## Completed according to supplied evidence
@@ -35,6 +51,6 @@ Independent participant validation, calibration, automated ASD-FEAT raw-media ex
 - MP4 analysis, summary, exact linear explanations and HTML/JSON export implemented.
 - Existing-video reproduction 5/5; upload cases 5/5; explanation checks 1070/1070.
 - Corrected Word/PDF report and 14-slide presentation installed.
-- Team order: Muhammad Danial, Hamza Rasheed and Muhammad Freeh.
+- Team order: Muhammad Danial, Hamza Rasheed and Muhammad Fareed.
 - New-video accuracy and clinical reliability are not established.
 - GitHub review and publishing of this extension remain separate tasks.

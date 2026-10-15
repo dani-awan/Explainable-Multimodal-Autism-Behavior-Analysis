@@ -132,3 +132,15 @@ if report:
         explanation_html += '<h3>'+html.escape(e['label'])+'</h3><table border="1"><tr><th>Feature</th><th>Logit contribution</th><th>Direction</th></tr>'+feature_rows+'</table>'
     document = '<!doctype html><html lang="en"><meta charset="utf-8"><title>Video behavior research report</title><body><h1>AV-ASD Video Behavior Analysis</h1><p>'+html.escape(report['limitations'])+'</p><h2>Recording summary</h2><p>'+html.escape(report.get('summary', summarize_results(report['labels'], report['threshold'])))+'</p><p>Frozen threshold: '+str(report['threshold'])+'</p><table border="1"><tr><th>Label</th><th>Model score</th><th>Threshold result</th></tr>'+rows+'</table><h2>Model feature contributions</h2><p>Logit contributions explain the model, not behavioral causes. Top ten features omit the intercept and remaining features; values are not percentages.</p>'+explanation_html+'<h2>Input quality and provenance</h2><pre>'+html.escape(payload)+'</pre></body></html>'
     st.download_button('Download HTML report', document, 'video_behavior_report.html', 'text/html')
+
+# REPORT_WORKSPACE_INTEGRATION
+# Formatting existing results only; no additional model inference.
+import sys as _workspace_sys
+_workspace_sys.path.insert(0, str(ROOT / 'scripts/report_workspace'))
+from theme import apply_theme as _workspace_theme
+from downloads import pdf_download as _workspace_download
+_workspace_theme(st)
+_workspace_report = st.session_state.get('av_asd_video_report')
+if _workspace_report:
+    _workspace_download(st, _workspace_report, 'professional_pdf_video')
+# END_REPORT_WORKSPACE_INTEGRATION
