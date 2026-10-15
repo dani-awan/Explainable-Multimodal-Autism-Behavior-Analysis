@@ -1,3 +1,18 @@
+<!-- RESEARCH_EXTENSION_STATUS -->
+## Completed research extensions as of 14 October 2026
+
+Team: Muhammad Danial, Hamza Rasheed, Muhammad Fareed.
+
+- XGBoost with held-out Tree SHAP: three candidates across five participant-disjoint ASD-FEAT folds.
+- Ordered RGB sequence preparation and LSTM/TCN comparisons with a matched mean-pooling LR control.
+- DREAM full-release audit, 54 activity descriptors and participant-grouped IM/JA/TT classification on 2,615 sessions from 56 participants.
+- Results dashboard pages 10, 11 and 12; updated report, presentation and targeted reference review.
+
+These are exploratory extensions after prior test exposure. Tested temporal/XGBoost models did not exceed the selected RGB-plus-behavior LR mean ASD F1. DREAM activity RF mean macro F1 is 0.5911 versus dummy 0.2716; this concerns therapy tasks, not diagnosis or severity. The original frozen models remain preserved.
+
+Independent external validation, dataset-specific permissions/access provenance and compatible automatic ASD-FEAT raw inputs remain unresolved. Clinical diagnosis, calibrated autism risk and severity are not established. Later proposal/future-work wording describes the original plan; the current status above takes precedence.
+<!-- END_RESEARCH_EXTENSION_STATUS -->
+
 <!-- FINAL_IMPLEMENTATION_STATUS -->
 # Current Implementation and Submission Status
 
@@ -34,7 +49,7 @@ before wider publication or redistribution.
 
 ## Team
 
-Muhammad Danial, Hamza Rasheed and Muhammad Freeh.
+Muhammad Danial, Hamza Rasheed and Muhammad Fareed.
 
 ## Final Deliverables
 
@@ -724,7 +739,7 @@ To improve reproducibility, the project will aim to document:
 **Team Members**
 
 * Muhammad Danial
-* Muhammad Freeh
+* Muhammad Fareed
 
 > Team roles and responsibilities will be documented as the project progresses.
 

@@ -211,4 +211,16 @@ if 'research_analysis_result' in st.session_state:
     st.caption('Positive contributions raise the logit; negative contributions lower it. These are not observed symptoms or causal findings.')
     st.download_button('Download readable report', document, 'Research_Analysis_Report.html', 'text/html')
     st.download_button('Download structured report', json.dumps(report, indent=2), 'Research_Analysis_Report.json', 'application/json')
-    st.caption('For a PDF, open the downloaded HTML report in your browser and choose Print → Save as PDF. Reports contain no name or recording identifier. Inputs are not written to project files by this page.')
+    st.caption('Use the direct PDF download below. Reports contain no personal name or recording identifier. Inputs are not written to project files by this page.')
+
+# REPORT_WORKSPACE_INTEGRATION
+# Formatting existing results only; no additional model inference.
+import sys as _workspace_sys
+_workspace_sys.path.insert(0, str(ROOT / 'scripts/report_workspace'))
+from theme import apply_theme as _workspace_theme
+from downloads import pdf_download as _workspace_download
+_workspace_theme(st)
+_workspace_report = (st.session_state.get('research_analysis_result') or [None])[0]
+if _workspace_report:
+    _workspace_download(st, _workspace_report, 'professional_pdf_features')
+# END_REPORT_WORKSPACE_INTEGRATION
